@@ -151,7 +151,7 @@ export default function Header() {
                 style={{
                   position: "absolute",
                   top: menuBtnPos.top - 30, // ou -10 selon le rendu souhaité
-                  right: menuBtnPos.right - 5,
+                  right: menuBtnPos.right,
                   padding: "24px",
                 }}
               >
