@@ -4,7 +4,16 @@ import Link from "next/link";
 import Image from "next/image";
 import { useMemo, useRef, useState, useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
+import {
+  motion,
+  AnimatePresence,
+  useScroll,
+  useTransform,
+  useSpring,
+  useMotionTemplate,
+} from "framer-motion";
+import LogoMaskWithImage from "./LogoMask";
+import { HoverImageLinks } from "./HoverImageLinks";
 import getTranslations from "../lib/getTranslations";
 import { RevealText } from "./RevealText";
 
@@ -16,10 +25,49 @@ export default function Header() {
 
   const [isHovered, setIsHovered] = useState(false);
   const menuRef = useRef(false);
-  const forceUpdate = useState()[1]; // for trigger re-render
+  const forceUpdate = useState()[1];
 
   const menuButtonRef = useRef(null);
   const [menuBtnPos, setMenuBtnPos] = useState({ top: 0, right: 0 });
+
+  const { scrollY } = useScroll();
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  // Étape 1 : interpolation de largeur en fonction du scroll
+  const rawLogoWidth = useTransform(scrollY, [0, 300], [60, 30]); // en vw
+
+  // Étape 2 : spring pour adoucir l’effet
+  const logoWidth = useSpring(rawLogoWidth, {
+    stiffness: 50,
+    damping: 20,
+    mass: 1,
+  });
+
+  // Étape 3 : conversion vw via template string (évite .to())
+  const logoWidthVW = useMotionTemplate`${logoWidth}vw`;
+
+  // Switch fond et logo au-dessus de 300px
+  useEffect(() => {
+    const unsubscribe = scrollY.on("change", (latest) => {
+      setIsScrolled(latest > 300);
+    });
+    return () => unsubscribe();
+  }, [scrollY]);
+
+  const [logoSrc, setLogoSrc] = useState(
+    "/Logo_Hexagone_Titre_White_Full.svg"
+  );
+
+  useEffect(() => {
+    const unsubscribe = scrollY.on("change", (latest) => {
+      setLogoSrc(
+        latest > 300
+          ? "/Logo_Hexagone_Titre_Black_Full.svg"
+          : "/Logo_Hexagone_Titre_White_Full.svg"
+      );
+    });
+    return () => unsubscribe();
+  }, [scrollY]);
 
   useEffect(() => {
     if (menuButtonRef.current) {
@@ -29,44 +77,51 @@ export default function Header() {
   }, [menuRef.current]);
 
   const changeLocale = (newLocale) => {
-    const basePath = pathname.replace(/^\/(fr|en)/, '');
+    const basePath = pathname.replace(/^\/(fr|en)/, "");
     router.push(`/${newLocale}${basePath}`, { scroll: false });
-    // PAS de fermeture de menu ici !
   };
 
   return (
     <>
-      <header className="w-full fixed top-0 left-0 z-50 text-white px-6 py-4 flex justify-between items-center">
+      <motion.header
+        className={`w-full fixed top-0 left-0 z-50 px-6 py-4 flex justify-between items-center transition-colors duration-500 ${
+          isScrolled ? "bg-white border-b border-[#f0eee2]" : "bg-transparent"
+        }`}
+      >
         <Link href={`/${locale}`}>
-          <Image
-            src="/Logo_Hexagone_Titre_White_Full.svg"
-            alt="Logo"
-            width={200}
-            height={50}
-            className="h-auto w-[270px] md:w-[500px] xl:w-[1000px]"
-          />
+          <motion.div style={{ width: logoWidthVW }}>
+            <Image
+              src={logoSrc}
+              alt="Logo"
+              width={1000}
+              height={100}
+              className="h-auto w-full"
+              priority
+            />
+          </motion.div>
         </Link>
 
         <div className="flex items-center gap-6 text-sm font-medium">
           <button
             onClick={() => {
               menuRef.current = true;
-              forceUpdate({}); // force re-render
+              forceUpdate({});
             }}
             ref={menuButtonRef}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
-            className="tracking-wide cursor-pointer lg:text-xl font-thin text-white hover:text-primary transition-colors duration-300 xl:m-6 relative -m-6 p-6"
+            className={`hover:text-primary tracking-wide cursor-pointer lg:text-xl font-thin transition-colors duration-300 xl:m-6 relative -m-6 p-6 ${
+              isScrolled ? "text-black" : "text-white"
+            }`}
           >
             <RevealText isHovered={isHovered}>menu</RevealText>
           </button>
         </div>
-      </header>
+      </motion.header>
 
       <AnimatePresence>
         {menuRef.current && (
           <>
-            {/* Layer 1 */}
             <motion.div
               className="fixed top-0 right-0 w-full h-screen bg-[#700026] z-40"
               initial={{ x: "100%" }}
@@ -74,10 +129,8 @@ export default function Header() {
               exit={{ x: "100%" }}
               transition={{ duration: 0.8, ease: [0.77, 0, 0.175, 1] }}
             />
-
-            {/* Layer 2 */}
             <motion.div
-              className="fixed top-0 right-0 w-full h-screen bg-white z-50 flex flex-col justify-center items-center text-black"
+              className="fixed inset-0 right-0 w-full h-screen bg-neutral-800 z-50 flex flex-col justify-center items-center text-neutral-400"
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
@@ -92,7 +145,7 @@ export default function Header() {
                   menuRef.current = false;
                   forceUpdate({});
                 }}
-                className="text-4xl cursor-pointer hover:text-primary transition-colors duration-300"
+                className="text-4xl cursor-pointer hover:text-neutral-100 transition-colors duration-300 mr-3"
                 style={{
                   position: "absolute",
                   top: menuBtnPos.top,
@@ -103,43 +156,46 @@ export default function Header() {
                 ×
               </button>
 
-              <nav className="flex flex-col gap-8 text-3xl font-semibold">
-                <Link href={`/${locale}`} onClick={() => {
-                  menuRef.current = false;
-                  forceUpdate({});
-                }}>
-                  {t.header.home}
-                </Link>
-                <Link href={`/${locale}/a-propos`} onClick={() => {
-                  menuRef.current = false;
-                  forceUpdate({});
-                }}>
-                  {t.header.about}
-                </Link>
-                <Link href={`/${locale}/contact`} onClick={() => {
-                  menuRef.current = false;
-                  forceUpdate({});
-                }}>
-                  {t.header.contact}
-                </Link>
-              </nav>
+              <div className="relative w-full max-w-5xl mx-auto px-4 md:px-8">
+                {/* Logo géant positionné derrière */}
+                <LogoMaskWithImage
+                  imageUrl="/imgs/pexels-marcin-dampc-807808-1684187.jpg"
+                  className="absolute xl:-left-0 2xl:-left-70 top-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[1200px] md:h-[1200px] opacity-15 pointer-events-none z-0"
+                />
+
+                {/* Liens de navigation au-dessus */}
+                <div className="relative z-10">
+                  <HoverImageLinks
+                    locale={locale}
+                    onClick={() => {
+                      menuRef.current = false;
+                      forceUpdate({});
+                    }}
+                    translations={t.header}
+                  />
+                </div>
+              </div>
+
             </motion.div>
           </>
         )}
       </AnimatePresence>
 
-      {/* FR / EN Floating Button */}
-      <div className="fixed bottom-36 xl:bottom-30 left-6 z-50 bg-black/60 backdrop-blur-md text-white rounded-full px-4 py-2 text-sm shadow-md">
+      <div className="fixed bottom-5 left-6 z-50 bg-black/60 backdrop-blur-md text-white rounded-full px-4 py-2 text-sm shadow-md">
         <button
           onClick={() => changeLocale("fr")}
-          className={`hover:underline cursor-pointer ${locale === "fr" ? "font-bold text-white" : "text-gray-300"}`}
+          className={`hover:underline cursor-pointer ${
+            locale === "fr" ? "font-bold text-white" : "text-gray-300"
+          }`}
         >
           FR
         </button>
         <span className="mx-1 text-gray-400">|</span>
         <button
           onClick={() => changeLocale("en")}
-          className={`hover:underline cursor-pointer ${locale === "en" ? "font-bold text-white" : "text-gray-300"}`}
+          className={`hover:underline cursor-pointer ${
+            locale === "en" ? "font-bold text-white" : "text-gray-300"
+          }`}
         >
           EN
         </button>

@@ -10,7 +10,7 @@ export default function HeroVideo() {
   const t = getTranslations(locale)
   
   return (
-    <div className="relative w-full h-[90vh] overflow-hidden">
+    <div className="relative w-full h-[90vh] overflow-hidden rounded-br-[120px]">
       <video
         autoPlay
         muted
@@ -18,14 +18,14 @@ export default function HeroVideo() {
         playsInline
         className="absolute top-0 left-0 w-full h-full object-cover z-0"
       >
-        <source src="/videos/hero-hexagone.mp4" type="video/mp4" />
+        <source src="/videos/hero-hexagone-sm3.mp4" type="video/mp4" />
       </video>
       {/* Optionnel : message ou slogan */}
-      <div className="relative z-10 flex items-center justify-center h-full text-white text-center px-6">
+      {/* <div className="relative z-10 flex items-center justify-center h-full text-white text-center px-6">
         <h1 className="text-4xl md:text-5xl font-bold drop-shadow-md">
           {t.home.title}
         </h1>
-      </div>
+      </div> */}
     </div>
   )
 }

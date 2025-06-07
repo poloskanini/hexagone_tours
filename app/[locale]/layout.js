@@ -1,5 +1,4 @@
 import '../globals.css'
-import VideoBackground from '../../components/VideoBackground'
 
 export function generateMetadata({ params }) {
   return {
@@ -12,5 +11,5 @@ export default function LocaleLayout({ children }) {
     <>
       <main>{children}</main>
     </>
-  )
+  );
 }

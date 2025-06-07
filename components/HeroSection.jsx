@@ -9,9 +9,10 @@ export default function HeroSection() {
   const t = getTranslations(locale)
 
   return (
-    <section className="text-center text-black mt-30">
+    <section className="text-center text-black h-screen my-30">
       <h1 className="text-4xl font-bold">{t.home.title}</h1>
       <p className="mt-4 text-lg">{t.home.subtitle}</p>
+      <p>En construction</p>
     </section>
   )
 }
