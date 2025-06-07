@@ -5,7 +5,8 @@ import Image from "next/image";
 import { useState, useEffect, useMemo } from "react";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import getTranslations from "@/lib/getTranslations";
+import getTranslations from '../lib/getTranslations'
+
 
 export default function Header() {
   const pathname = usePathname();
