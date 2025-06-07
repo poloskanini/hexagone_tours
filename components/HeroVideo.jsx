@@ -1,55 +1,31 @@
 'use client'
 
-import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import getTranslations from '../lib/getTranslations'
 
 export default function HeroVideo() {
-  const [menuOpen, setMenuOpen] = useState(false)
 
+  const pathname = usePathname()
+  const locale = pathname.split('/')[1] || 'fr'
+  const t = getTranslations(locale)
+  
   return (
-    <div className="relative w-full overflow-hidden">
-      {/* VIDEO EN FOND */}
-      {/* <video
+    <div className="relative w-full h-[90vh] overflow-hidden">
+      <video
         autoPlay
         muted
         loop
         playsInline
         className="absolute top-0 left-0 w-full h-full object-cover z-0"
       >
-        <source src="/videos/your-video.mp4" type="video/mp4" />
-      </video> */}
-
-      {/* BARRE DE NAVIGATION */}
-      <div className="absolute top-0 left-0 w-full flex justify-between items-center px-6 py-4 z-10">
-        <div className="text-white text-xl font-bold">LOGO</div>
-        <button onClick={() => setMenuOpen(true)} className="text-white text-md uppercase tracking-wide">
-          Menu
-        </button>
+        <source src="/videos/hero-hexagone.mp4" type="video/mp4" />
+      </video>
+      {/* Optionnel : message ou slogan */}
+      <div className="relative z-10 flex items-center justify-center h-full text-white text-center px-6">
+        <h1 className="text-4xl md:text-5xl font-bold drop-shadow-md">
+          {t.home.title}
+        </h1>
       </div>
-
-      {/* OVERLAY MENU */}
-      <AnimatePresence>
-        {menuOpen && (
-          <motion.div
-            className="fixed inset-0 bg-white z-20 flex justify-end"
-            initial={{ x: '100%' }}
-            animate={{ x: 0 }}
-            exit={{ x: '100%' }}
-            transition={{ duration: 0.6, ease: [0.77, 0, 0.175, 1] }}
-          >
-            <div className="w-full sm:w-[80%] md:w-[60%] lg:w-[40%] h-full p-10 flex flex-col justify-center items-start gap-6">
-              <button
-                onClick={() => setMenuOpen(false)}
-                className="self-end text-black text-lg mb-10"
-              >
-                ✕
-              </button>
-
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </div>
   )
 }

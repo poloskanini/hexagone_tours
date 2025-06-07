@@ -7,10 +7,6 @@ module.exports = {
   ],
   theme: {
     extend: {
-      colors: {
-        'hexagone-primary': '#4A67AE',     // bordeaux Hexagone
-        'secondary': "#5C5D60",   // gris foncé Hexagone
-      },
     },
   },
   plugins: [],
