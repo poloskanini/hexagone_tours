@@ -26,27 +26,31 @@ export default function Header() {
   const [isHovered, setIsHovered] = useState(false);
   const menuRef = useRef(false);
   const forceUpdate = useState()[1];
-
   const menuButtonRef = useRef(null);
   const [menuBtnPos, setMenuBtnPos] = useState({ top: 0, right: 0 });
 
   const { scrollY } = useScroll();
   const [isScrolled, setIsScrolled] = useState(false);
+  const [hydrated, setHydrated] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
 
-  // Étape 1 : interpolation de largeur en fonction du scroll
-  const rawLogoWidth = useTransform(scrollY, [0, 300], [60, 30]); // en vw
+  useEffect(() => {
+    setHydrated(true);
+    const updateIsDesktop = () => setIsDesktop(window.innerWidth >= 1024);
+    updateIsDesktop();
+    window.addEventListener("resize", updateIsDesktop);
+    return () => window.removeEventListener("resize", updateIsDesktop);
+  }, []);
 
-  // Étape 2 : spring pour adoucir l’effet
-  const logoWidth = useSpring(rawLogoWidth, {
+  const logoWidthRaw = useTransform(scrollY, [0, 300], [60, 30]);
+  const staticWidth = 60;
+  const animatedWidth = useSpring(logoWidthRaw, {
     stiffness: 50,
     damping: 20,
     mass: 1,
   });
+  const logoWidthVW = useMotionTemplate`${hydrated && isDesktop ? animatedWidth : staticWidth}vw`;
 
-  // Étape 3 : conversion vw via template string (évite .to())
-  const logoWidthVW = useMotionTemplate`${logoWidth}vw`;
-
-  // Switch fond et logo au-dessus de 300px
   useEffect(() => {
     const unsubscribe = scrollY.on("change", (latest) => {
       setIsScrolled(latest > 300);
@@ -54,9 +58,7 @@ export default function Header() {
     return () => unsubscribe();
   }, [scrollY]);
 
-  const [logoSrc, setLogoSrc] = useState(
-    "/Logo_Hexagone_Titre_White_Full.svg"
-  );
+  const [logoSrc, setLogoSrc] = useState("/Logo_Hexagone_Titre_White_Full.svg");
 
   useEffect(() => {
     const unsubscribe = scrollY.on("change", (latest) => {
@@ -157,13 +159,10 @@ export default function Header() {
               </button>
 
               <div className="relative w-full max-w-5xl mx-auto px-4 md:px-8">
-                {/* Logo géant positionné derrière */}
                 <LogoMaskWithImage
                   imageUrl="/imgs/pexels-marcin-dampc-807808-1684187.jpg"
                   className="absolute xl:-left-0 2xl:-left-70 top-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[1200px] md:h-[1200px] opacity-15 pointer-events-none z-0"
                 />
-
-                {/* Liens de navigation au-dessus */}
                 <div className="relative z-10">
                   <HoverImageLinks
                     locale={locale}
@@ -175,7 +174,6 @@ export default function Header() {
                   />
                 </div>
               </div>
-
             </motion.div>
           </>
         )}
