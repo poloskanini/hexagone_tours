@@ -42,7 +42,7 @@ export default function Header() {
     return () => window.removeEventListener("resize", updateIsDesktop);
   }, []);
 
-  const logoWidthRaw = useTransform(scrollY, [0, 300], [60, 30]);
+  const logoWidthRaw = useTransform(scrollY, [0, 300], [45, 20]);
   const staticWidth = 60;
   const animatedWidth = useSpring(logoWidthRaw, {
     stiffness: 50,
@@ -86,7 +86,7 @@ export default function Header() {
   return (
     <>
       <motion.header
-        className={`w-full fixed top-0 left-0 z-50 px-6 py-4 flex justify-between items-center transition-colors duration-500 ${
+        className={`w-full fixed top-0 left-0 z-40 px-6 py-4 flex justify-between items-center transition-colors duration-500 ${
           isScrolled ? "bg-white border-b border-[#f0eee2]" : "bg-transparent"
         }`}
       >
@@ -112,7 +112,7 @@ export default function Header() {
             ref={menuButtonRef}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
-            className={`hover:text-primary tracking-wide cursor-pointer lg:text-xl font-thin transition-colors duration-300 xl:m-6 relative -m-6 p-6 ${
+            className={`hover:text-primary tracking-wide cursor-pointer lg:text-xl font-thin transition-colors duration-300 xl:m-6 relative  ${
               isScrolled ? "text-black" : "text-white"
             }`}
           >
@@ -147,11 +147,11 @@ export default function Header() {
                   menuRef.current = false;
                   forceUpdate({});
                 }}
-                className="text-4xl cursor-pointer hover:text-neutral-100 transition-colors duration-300 mr-3"
+                className="text-4xl cursor-pointer hover:text-neutral-100 transition-colors duration-300"
                 style={{
                   position: "absolute",
-                  top: menuBtnPos.top,
-                  right: menuBtnPos.right,
+                  top: menuBtnPos.top - 30, // ou -10 selon le rendu souhaité
+                  right: menuBtnPos.right - 5,
                   padding: "24px",
                 }}
               >
