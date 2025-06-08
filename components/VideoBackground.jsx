@@ -7,7 +7,7 @@ export default function VideoBackground() {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 1.2, ease: "easeOut" }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
       className="absolute top-0 left-0 w-full h-[90vh] z-0 overflow-hidden rounded-br-[110px]"
     >
       <video
@@ -17,7 +17,7 @@ export default function VideoBackground() {
         playsInline
         className="w-full h-full object-cover"
       >
-        <source src="/videos/hexagone-hero-sm-3.mp4" type="video/mp4" />
+        <source src="/videos/HEXAGONE2.mp4" type="video/mp4" />
       </video>
     </motion.div>
   );

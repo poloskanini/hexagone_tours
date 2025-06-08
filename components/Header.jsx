@@ -34,6 +34,7 @@ export default function Header() {
   const [hydrated, setHydrated] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
 
+  // Reduction taille Logo au scroll
   useEffect(() => {
     setHydrated(true);
     const updateIsDesktop = () => setIsDesktop(window.innerWidth >= 1024);
@@ -64,13 +65,14 @@ export default function Header() {
     const unsubscribe = scrollY.on("change", (latest) => {
       setLogoSrc(
         latest > 300
-          ? "/Logo_Hexagone_Titre_Black_Full.svg"
+          ? "/Logo_Hexagone_Titre.svg"
           : "/Logo_Hexagone_Titre_White_Full.svg"
       );
     });
     return () => unsubscribe();
   }, [scrollY]);
 
+  // Position du bouton "X" dans Menu Navlink Full Screen
   useEffect(() => {
     if (menuButtonRef.current) {
       const rect = menuButtonRef.current.getBoundingClientRect();
@@ -78,6 +80,7 @@ export default function Header() {
     }
   }, [menuRef.current]);
 
+  // Gestion de la langue
   const changeLocale = (newLocale) => {
     const basePath = pathname.replace(/^\/(fr|en)/, "");
     router.push(`/${newLocale}${basePath}`, { scroll: false });
@@ -86,7 +89,7 @@ export default function Header() {
   return (
     <>
       <motion.header
-        className={`w-full fixed top-0 left-0 z-40 px-6 py-4 flex justify-between items-center transition-colors duration-500 ${
+        className={`w-full fixed top-0 left-0 z-40 px-6 pt-2 flex justify-between items-center transition-colors duration-500 ${
           isScrolled ? "bg-white border-b border-[#f0eee2]" : "bg-transparent"
         }`}
       >
@@ -97,12 +100,13 @@ export default function Header() {
               alt="Logo"
               width={1000}
               height={100}
-              className="h-auto w-full"
+              className="h-auto w-full p-2 -m-2"
               priority
             />
           </motion.div>
         </Link>
 
+        {/* BOUTON MENU */}
         <div className="flex items-center gap-6 text-sm font-medium">
           <button
             onClick={() => {
@@ -112,15 +116,19 @@ export default function Header() {
             ref={menuButtonRef}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
-            className={`hover:text-primary tracking-wide cursor-pointer lg:text-xl font-thin transition-colors duration-300 xl:m-6 relative  ${
+            className={`tracking-wide cursor-pointer text-lg lg:text-2xl font-thin transition-colors duration-300 xl:m-6 relative p-2 -m-2 ${
               isScrolled ? "text-black" : "text-white"
             }`}
           >
-            <RevealText isHovered={isHovered}>menu</RevealText>
+            <RevealText isHovered={isHovered}>
+              menu
+            </RevealText>
+            
           </button>
         </div>
       </motion.header>
 
+      {/* MENU NAVLINK FULL SCREEN */}
       <AnimatePresence>
         {menuRef.current && (
           <>
@@ -132,7 +140,7 @@ export default function Header() {
               transition={{ duration: 0.8, ease: [0.77, 0, 0.175, 1] }}
             />
             <motion.div
-              className="fixed inset-0 right-0 w-full h-screen bg-neutral-800 z-50 flex flex-col justify-center items-center text-neutral-400"
+              className="fixed inset-0 right-0 w-full h-screen bg-cyan-900 z-50 flex flex-col justify-center items-center text-neutral-400"
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
@@ -158,10 +166,11 @@ export default function Header() {
                 ×
               </button>
 
+              {/* Logo Background */}
               <div className="relative w-full max-w-5xl mx-auto px-4 md:px-8">
                 <LogoMaskWithImage
                   imageUrl="/imgs/pexels-marcin-dampc-807808-1684187.jpg"
-                  className="absolute xl:-left-0 2xl:-left-70 top-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[1200px] md:h-[1200px] opacity-15 pointer-events-none z-0"
+                  className="absolute xl:-left-0 2xl:-left-70 top-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[1200px] md:h-[1200px] opacity-30 pointer-events-none z-0"
                 />
                 <div className="relative z-10">
                   <HoverImageLinks
@@ -179,6 +188,7 @@ export default function Header() {
         )}
       </AnimatePresence>
 
+      {/* MultiLingue */}
       <div className="fixed bottom-5 left-6 z-50 bg-black/60 backdrop-blur-md text-white rounded-full px-4 py-2 text-sm shadow-md">
         <button
           onClick={() => changeLocale("fr")}
