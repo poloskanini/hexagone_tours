@@ -89,7 +89,7 @@ export default function Header() {
   return (
     <>
       <motion.header
-        className={`w-full fixed top-0 left-0 z-40 px-6 pt-2 flex justify-between items-center transition-colors duration-500 ${
+        className={`w-full fixed top-0 left-0 z-40 px-6 py-2 flex justify-between items-center transition-colors duration-500 ${
           isScrolled ? "bg-white border-b border-[#f0eee2]" : "bg-transparent"
         }`}
       >
@@ -132,33 +132,39 @@ export default function Header() {
       <AnimatePresence>
         {menuRef.current && (
           <>
+            {/* Fond blanc en arrière-plan */}
             <motion.div
-              className="fixed top-0 right-0 w-full h-screen bg-[#700026] z-40"
+              className="fixed top-0 right-0 w-full h-screen bg-orange-100 z-40"
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
-              transition={{ duration: 0.8, ease: [0.77, 0, 0.175, 1] }}
+              transition={{
+                duration: 0.6, // légèrement plus rapide
+                ease: [0.65, 0, 0.35, 1], // easing plus fluide
+              }}
             />
+
+            {/* Bloc bleu foncé par-dessus, contenu menu */}
             <motion.div
               className="fixed inset-0 right-0 w-full h-screen bg-cyan-900 z-50 flex flex-col justify-center items-center text-neutral-400"
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{
-                duration: 0.8,
-                delay: 0.1,
+                duration: 0.8, // un poil plus lent
                 ease: [0.77, 0, 0.175, 1],
               }}
             >
+              {/* Bouton fermeture */}
               <button
                 onClick={() => {
                   menuRef.current = false;
                   forceUpdate({});
                 }}
-                className="text-4xl cursor-pointer hover:text-neutral-100 transition-colors duration-300"
+                className="text-5xl cursor-pointer hover:text-neutral-100 transition-colors duration-300"
                 style={{
                   position: "absolute",
-                  top: menuBtnPos.top - 30, // ou -10 selon le rendu souhaité
+                  top: menuBtnPos.top - 20,
                   right: menuBtnPos.right,
                   padding: "24px",
                 }}
@@ -166,7 +172,7 @@ export default function Header() {
                 ×
               </button>
 
-              {/* Logo Background */}
+              {/* Logo + Liens */}
               <div className="relative w-full max-w-5xl mx-auto px-4 md:px-8">
                 <LogoMaskWithImage
                   imageUrl="/imgs/pexels-marcin-dampc-807808-1684187.jpg"
@@ -188,11 +194,12 @@ export default function Header() {
         )}
       </AnimatePresence>
 
+
       {/* MultiLingue */}
       <div className="fixed bottom-5 left-6 z-50 bg-black/60 backdrop-blur-md text-white rounded-full px-4 py-2 text-sm shadow-md">
         <button
           onClick={() => changeLocale("fr")}
-          className={`hover:underline cursor-pointer ${
+          className={`hover:underline cursor-pointer p-4 -m-4 ${
             locale === "fr" ? "font-bold text-white" : "text-gray-300"
           }`}
         >
@@ -201,7 +208,7 @@ export default function Header() {
         <span className="mx-1 text-gray-400">|</span>
         <button
           onClick={() => changeLocale("en")}
-          className={`hover:underline cursor-pointer ${
+          className={`hover:underline cursor-pointer p-4 -m-4 ${
             locale === "en" ? "font-bold text-white" : "text-gray-300"
           }`}
         >

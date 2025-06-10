@@ -7,8 +7,13 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        primary: 'var(--color-secondary)',
+        secondary: 'var(--color-secondary)',
+      },
       fontFamily: {
-        sans: ['var(--font-manrope)', 'sans-serif'],
+        manrope: ['var(--font-manrope)', 'sans-serif'],
+        playfair: ['var(--font-playfair)'],
       },
     },
   },

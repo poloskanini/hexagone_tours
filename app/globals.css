@@ -1,23 +1,14 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff; /* fond blanc */
-  --foreground: #000000; /* texte noir */
-}
+  --background: #ffffff;
+  --foreground: #000000;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-
-  /* ✅ applique Manrope ici */
-  --font-sans: var(--font-manrope);
-  /* ⛔️ supprime Geist si non utilisé */
-  /* --font-mono: var(--font-geist-mono); */
-}
-
-@theme {
   --color-primary: #700026;   /* Bordeaux */
   --color-secondary: #5C5C5C; /* Gris foncé */
+
+  --font-manrope: 'Manrope', sans-serif;
+  --font-playfair: 'Playfair Display', serif;
 }
 
 html {
@@ -27,7 +18,29 @@ html {
 body {
   background: var(--background);
   color: var(--foreground);
+  font-family: var(--font-manrope); /* par défaut */
+}
 
-  /* ✅ Laisse Tailwind gérer avec font-sans */
-  font-family: var(--font-sans);
+/* Classes utilitaires pour polices */
+.font-manrope {
+  font-family: var(--font-manrope);
+}
+
+.font-playfair {
+  font-family: var(--font-playfair);
+}
+
+@layer utilities {
+  .text-primary {
+    color: var(--color-primary);
+  }
+  .text-secondary {
+    color: var(--color-secondary);
+  }
+  .bg-primary {
+    background-color: var(--color-primary);
+  }
+  .bg-secondary {
+    background-color: var(--color-secondary);
+  }
 }

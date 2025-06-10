@@ -1,6 +1,7 @@
 import { useMotionValue, motion, useSpring, useTransform } from "framer-motion";
 import React, { useRef } from "react";
 import { FiArrowRight, FiArrowLeft } from "react-icons/fi";
+import Link from "next/link";
 
 export const HoverImageLinks = ({ locale, onClick, translations }) => {
   const links = [
@@ -8,19 +9,25 @@ export const HoverImageLinks = ({ locale, onClick, translations }) => {
       heading: translations.home || "Accueil",
       subheading: translations.sub_home || "Retour à l’accueil",
       imgSrc: "/imgs/pexels-pok-rie-33563-135477.jpg",
-      href: `/${locale}`,
+      href: "#home",
     },
     {
-      heading: translations.about || "À propos", // ← espace normal
+      heading: translations.expertise || "Savoir Faire",
+      subheading: translations.sub_expertise || "Découvrir notre vision",
+      imgSrc: "/imgs/pexels-pok-rie-33563-135477.jpg",
+      href: "#expertise",
+    },
+    {
+      heading: translations.about || "À propos",
       subheading: translations.sub_about || "Découvrir notre vision",
       imgSrc: "/imgs/pexels-evonics-2086765.jpg",
-      href: `/${locale}/a-propos`,
+      href: "#a-propos",
     },
     {
       heading: translations.contact || "Contact",
       subheading: translations.sub_contact || "Prenons contact",
       imgSrc: "/imgs/pexels-pixabay-41004.jpg",
-      href: `/${locale}/contact`,
+      href: "#contact",
     },
   ];
 
@@ -50,11 +57,20 @@ const HoverLink = ({ heading, imgSrc, subheading, href, onClick }) => {
     y.set(yPct);
   };
 
+  const handleClick = (e) => {
+    e.preventDefault();
+    const id = href.replace("#", "");
+    const target = document.getElementById(id);
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth" });
+    }
+    if (onClick) onClick();
+  };
+
   return (
-    <motion.a
-      href={href}
+    <motion.div
       ref={ref}
-      onClick={onClick}
+      onClick={handleClick}
       onMouseMove={handleMouseMove}
       initial="initial"
       whileHover="whileHover"
@@ -118,6 +134,6 @@ const HoverLink = ({ heading, imgSrc, subheading, href, onClick }) => {
       >
         <FiArrowLeft className="text-5xl text-neutral-200" />
       </motion.div>
-    </motion.a>
+    </motion.div>
   );
 };
