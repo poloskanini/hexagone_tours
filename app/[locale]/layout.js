@@ -2,7 +2,7 @@ import '../globals.css'
 
 export function generateMetadata({ params }) {
   return {
-    title: 'HEXAGONE',
+    title: 'Hexagone Tours - Agence de Voyage',
   }
 }
 
