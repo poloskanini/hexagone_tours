@@ -8,9 +8,6 @@ import {
   motion,
   AnimatePresence,
   useScroll,
-  useTransform,
-  useSpring,
-  useMotionTemplate,
 } from "framer-motion";
 import LogoMaskWithImage from "./LogoMask";
 import { HoverImageLinks } from "./HoverImageLinks";
@@ -33,46 +30,49 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [hydrated, setHydrated] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
+  const [logoSrc, setLogoSrc] = useState("/Logo_Hexagone_Titre_White_Full.svg");
+  const [logoWidthVW, setLogoWidthVW] = useState("45vw");
 
-  // Reduction taille Logo au scroll
   useEffect(() => {
     setHydrated(true);
+
     const updateIsDesktop = () => setIsDesktop(window.innerWidth >= 1024);
     updateIsDesktop();
     window.addEventListener("resize", updateIsDesktop);
-    return () => window.removeEventListener("resize", updateIsDesktop);
-  }, []);
 
-  const logoWidthRaw = useTransform(scrollY, [0, 300], [45, 20]);
-  const staticWidth = 60;
-  const animatedWidth = useSpring(logoWidthRaw, {
-    stiffness: 50,
-    damping: 20,
-    mass: 1,
-  });
-  const logoWidthVW = useMotionTemplate`${hydrated && isDesktop ? animatedWidth : staticWidth}vw`;
+    const updateFromScroll = () => {
+      const scrollTop = window.scrollY;
+      const shouldFix = scrollTop > 300;
 
-  useEffect(() => {
-    const unsubscribe = scrollY.on("change", (latest) => {
-      setIsScrolled(latest > 300);
-    });
-    return () => unsubscribe();
-  }, [scrollY]);
-
-  const [logoSrc, setLogoSrc] = useState("/Logo_Hexagone_Titre_White_Full.svg");
-
-  useEffect(() => {
-    const unsubscribe = scrollY.on("change", (latest) => {
+      setIsScrolled(shouldFix);
       setLogoSrc(
-        latest > 300
+        shouldFix
           ? "/Logo_Hexagone_Titre.svg"
           : "/Logo_Hexagone_Titre_White_Full.svg"
       );
-    });
-    return () => unsubscribe();
-  }, [scrollY]);
 
-  // Position du bouton "X" dans Menu Navlink Full Screen
+      if (!hydrated || !isDesktop) {
+        setLogoWidthVW("60vw");
+        return;
+      }
+
+      if (shouldFix) {
+        setLogoWidthVW("20vw");
+      } else {
+        const interpolated = 45 - ((25 * scrollTop) / 300);
+        setLogoWidthVW(`${interpolated}vw`);
+      }
+    };
+
+    updateFromScroll();
+    window.addEventListener("scroll", updateFromScroll);
+
+    return () => {
+      window.removeEventListener("resize", updateIsDesktop);
+      window.removeEventListener("scroll", updateFromScroll);
+    };
+  }, [hydrated, isDesktop]);
+
   useEffect(() => {
     if (menuButtonRef.current) {
       const rect = menuButtonRef.current.getBoundingClientRect();
@@ -80,7 +80,6 @@ export default function Header() {
     }
   }, [menuRef.current]);
 
-  // Gestion de la langue
   const changeLocale = (newLocale) => {
     const basePath = pathname.replace(/^\/(fr|en)/, "");
     router.push(`/${newLocale}${basePath}`, { scroll: false });
@@ -89,7 +88,7 @@ export default function Header() {
   return (
     <>
       <motion.header
-        className={`w-full fixed top-0 left-0 z-40 px-6 py-2 flex justify-between items-center transition-colors duration-500 ${
+        className={`w-full fixed top-0 left-0 z-50 px-6 py-2 flex justify-between items-center transition-colors duration-500 ${
           isScrolled ? "bg-white border-b border-[#f0eee2]" : "bg-transparent"
         }`}
       >
@@ -106,7 +105,6 @@ export default function Header() {
           </motion.div>
         </Link>
 
-        {/* BOUTON MENU */}
         <div className="flex items-center gap-6 text-sm font-medium">
           <button
             onClick={() => {
@@ -120,42 +118,35 @@ export default function Header() {
               isScrolled ? "text-black" : "text-white"
             }`}
           >
-            <RevealText isHovered={isHovered}>
-              menu
-            </RevealText>
-            
+            <RevealText isHovered={isHovered}>menu</RevealText>
           </button>
         </div>
       </motion.header>
 
-      {/* MENU NAVLINK FULL SCREEN */}
       <AnimatePresence>
         {menuRef.current && (
           <>
-            {/* Fond blanc en arrière-plan */}
             <motion.div
               className="fixed top-0 right-0 w-full h-screen bg-orange-100 z-40"
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{
-                duration: 0.6, // légèrement plus rapide
-                ease: [0.65, 0, 0.35, 1], // easing plus fluide
+                duration: 0.6,
+                ease: [0.65, 0, 0.35, 1],
               }}
             />
 
-            {/* Bloc bleu foncé par-dessus, contenu menu */}
             <motion.div
               className="fixed inset-0 right-0 w-full h-screen bg-cyan-900 z-50 flex flex-col justify-center items-center text-neutral-400"
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{
-                duration: 0.8, // un poil plus lent
+                duration: 0.9,
                 ease: [0.77, 0, 0.175, 1],
               }}
             >
-              {/* Bouton fermeture */}
               <button
                 onClick={() => {
                   menuRef.current = false;
@@ -172,7 +163,6 @@ export default function Header() {
                 ×
               </button>
 
-              {/* Logo + Liens */}
               <div className="relative w-full max-w-5xl mx-auto px-4 md:px-8">
                 <LogoMaskWithImage
                   imageUrl="/imgs/pexels-marcin-dampc-807808-1684187.jpg"
@@ -194,8 +184,6 @@ export default function Header() {
         )}
       </AnimatePresence>
 
-
-      {/* MultiLingue */}
       <div className="fixed bottom-5 left-6 z-50 bg-black/60 backdrop-blur-md text-white rounded-full px-4 py-2 text-sm shadow-md">
         <button
           onClick={() => changeLocale("fr")}

@@ -14,7 +14,7 @@ export const HoverImageLinks = ({ locale, onClick, translations }) => {
     {
       heading: translations.expertise || "Savoir Faire",
       subheading: translations.sub_expertise || "Découvrir notre vision",
-      imgSrc: "/imgs/pexels-pok-rie-33563-135477.jpg",
+      imgSrc: "/imgs/carousel/diner2_11zon.jpg",
       href: "#expertise",
     },
     {
