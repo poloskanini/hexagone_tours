@@ -150,11 +150,29 @@ export default function FullscreenCarousel() {
       >
         <button
           onClick={handleNext}
+          className="group w-20 h-20 bg-white/10 border-2 border-white text-white text-[3.5rem] font-normal cursor-pointer leading-none rounded-full flex items-center justify-center transition duration-300 ease-in-out hover:scale-110 relative"
+        >
+          <span>
+            ›
+          </span>
+
+          {/* Halo animé autour du bouton */}
+          <span className="absolute inset-0 rounded-full animate-ping border-2 border-white/30" />
+        </button>
+      </motion.div>
+
+      {/* <motion.div
+        className="absolute top-112 left-[34%] z-40"
+        animate={buttonControls}
+        initial={{ scale: 1 }}
+      >
+        <button
+          onClick={handleNext}
           className="w-20 h-20 bg-transparent border-3 border-white text-white text-[3.5rem] font-normal cursor-pointer leading-none rounded-full flex items-center justify-center transition duration-300 ease-in-out"
         >
           ›
         </button>
-      </motion.div>
+      </motion.div> */}
     </div>
   );
 }

@@ -184,25 +184,39 @@ export default function Header() {
         )}
       </AnimatePresence>
 
-      <div className="fixed bottom-5 left-6 z-50 bg-black/60 backdrop-blur-md text-white rounded-full px-4 py-2 text-sm shadow-md">
-        <button
-          onClick={() => changeLocale("fr")}
-          className={`hover:underline cursor-pointer p-4 -m-4 ${
-            locale === "fr" ? "font-bold text-white" : "text-gray-300"
-          }`}
-        >
-          FR
-        </button>
-        <span className="mx-1 text-gray-400">|</span>
-        <button
-          onClick={() => changeLocale("en")}
-          className={`hover:underline cursor-pointer p-4 -m-4 ${
-            locale === "en" ? "font-bold text-white" : "text-gray-300"
-          }`}
-        >
-          EN
-        </button>
-      </div>
+      <div className="fixed bottom-5 left-6 z-50">
+  <div
+    onClick={() => changeLocale(locale === "fr" ? "en" : "fr")}
+    className="relative w-20 h-10 bg-black/60 backdrop-blur-md rounded-full cursor-pointer shadow-md"
+  >
+    {/* Emoji FR */}
+    <span
+      className={`absolute left-2.5 text-lg top-1/2 -translate-y-1/2 z-10 transition-opacity duration-300 ${
+        locale === "fr" ? "opacity-100" : "opacity-40"
+      }`}
+    >
+      🇫🇷
+    </span>
+
+    {/* Emoji EN */}
+    <span
+      className={`absolute right-2.5 text-lg top-1/2 -translate-y-1/2 z-10 transition-opacity duration-300 ${
+        locale === "en" ? "opacity-100" : "opacity-40"
+      }`}
+    >
+      🇬🇧
+    </span>
+
+    {/* Curseur rond */}
+    <div
+      className={`absolute top-1 left-1 w-8 h-8 bg-white rounded-full transition-transform duration-300 z-0 ${
+        locale === "fr" ? "translate-x-0" : "translate-x-10"
+      }`}
+    />
+  </div>
+</div>
+
+
     </>
   );
 }

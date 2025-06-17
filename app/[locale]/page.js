@@ -5,6 +5,7 @@ import { ImageTrailHero } from '../../components/ImageTrailHero'
 import FullscreenCarousel from '../../components/FullScreenCarousel'
 
 export default function HomePage() {
+
   return (
     <main>
       <HeroOverlayText />

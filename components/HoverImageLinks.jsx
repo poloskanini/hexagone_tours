@@ -18,10 +18,16 @@ export const HoverImageLinks = ({ locale, onClick, translations }) => {
       href: "#expertise",
     },
     {
-      heading: translations.about || "À propos",
-      subheading: translations.sub_about || "Découvrir notre vision",
-      imgSrc: "/imgs/pexels-evonics-2086765.jpg",
-      href: "#a-propos",
+      heading: translations.approch || "Une approche 360°",
+      subheading: translations.sub_approch || "Découvrir notre vision",
+      imgSrc: "/imgs/360.jpg",
+      href: "#approche-360",
+    },
+    {
+      heading: translations.whoarewe || "Qui sommes-nous ?",
+      subheading: translations.sub_whoarewe || "Une équipe dévouée",
+      imgSrc: "/imgs/team.jpg",
+      href: "#qui-sommes-nous",
     },
     {
       heading: translations.contact || "Contact",
@@ -74,7 +80,7 @@ const HoverLink = ({ heading, imgSrc, subheading, href, onClick }) => {
       onMouseMove={handleMouseMove}
       initial="initial"
       whileHover="whileHover"
-      className="group relative flex flex-row-reverse items-center justify-between border-b-2 border-neutral-300 py-4 transition-colors duration-500 hover:border-neutral-400 md:py-8 cursor-pointer"
+      className="group relative flex flex-row-reverse items-center justify-between border-b-2 border-neutral-300 py-4 transition-colors duration-500 hover:border-neutral-400 cursor-pointer"
     >
       <div className="text-right">
         <motion.h2
@@ -83,7 +89,7 @@ const HoverLink = ({ heading, imgSrc, subheading, href, onClick }) => {
             whileHover: { x: 16 },
           }}
           transition={{ type: "spring", staggerChildren: 0.075, delayChildren: 0.25 }}
-          className="relative z-10 block text-4xl font-bold text-neutral-300 transition-colors duration-500 group-hover:text-white md:text-6xl"
+          className="relative z-10 block text-3xl whitespace-nowrap font-bold text-neutral-300 transition-colors duration-500 group-hover:text-white md:text-6xl"
         >
           {heading.split(" ").map((word, wi) => (
             <React.Fragment key={wi}>
@@ -116,7 +122,7 @@ const HoverLink = ({ heading, imgSrc, subheading, href, onClick }) => {
       </div>
 
       <motion.img
-        style={{ top, left, translateX: "-150%", translateY: "-50%" }}
+        style={{ top, left, translateX: "-180%", translateY: "-50%" }}
         variants={{ initial: { scale: 0, rotate: "-12.5deg" }, whileHover: { scale: 1, rotate: "12.5deg" } }}
         transition={{ type: "spring" }}
         src={imgSrc}

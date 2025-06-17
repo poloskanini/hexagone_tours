@@ -31,7 +31,7 @@ export default function HeroSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.6 }}
                 transition={{ duration: 0.8, delay: index * 0.2 }}
-                className="text-3xl lg:text-5xl lg:leading-[1.4] font-playfair text-secondary"
+                className="text-2xl lg:text-5xl lg:leading-[1.4] font-playfair text-secondary"
               >
                 {line}
               </motion.p>

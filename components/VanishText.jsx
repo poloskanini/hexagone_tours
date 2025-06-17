@@ -11,8 +11,8 @@ export const VanishText = () => {
   const t = getTranslations(locale)
 
   return (
-    <div className="container sm:px-6 lg:px-8 px-4 py-12 md:py-36 text-left mx-auto">
-      <h3 className="text-3xl lg:text-5xl font-normal text-secondary font-playfair gap-2 lg:leading-[1.4]">
+    <div className="container sm:px-8 lg:px-9 px-4 py-12 md:py-36 text-left mx-auto">
+      <h3 className="text-2xl lg:text-5xl font-normal text-secondary font-playfair gap-2 lg:leading-[1.4]">
         <span>{t.vanish.static} </span>
         <AnimatedText phrases={t.vanish.phrases} />
       </h3>
@@ -21,7 +21,7 @@ export const VanishText = () => {
 }
 
 const ONE_SECOND = 1000
-const WAIT_TIME = ONE_SECOND * 3
+const WAIT_TIME = ONE_SECOND * 2
 
 const AnimatedText = ({ phrases }) => {
   const [active, setActive] = useState(0)
