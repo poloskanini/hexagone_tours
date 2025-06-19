@@ -144,7 +144,7 @@ export default function FullscreenCarousel() {
 
       {/* Bouton suivant */}
       <motion.div
-        className="absolute top-112 left-[34%] z-40"
+        className="absolute md:top-92 2xl:top-112 left-[34%] z-40"
         animate={buttonControls}
         initial={{ scale: 1 }}
       >

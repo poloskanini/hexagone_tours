@@ -6,11 +6,11 @@ import { motion } from "framer-motion";
 export const ImageTrailHero = () => {
   return (
       <>
-        <section className="h-[40vh] md:h-[50vh] bg-slate-200 mt-12">
+        <section className="h-[30vh] md:h-[45vh] bg-slate-200">
           <WatermarkWrapper />
         </section>
 
-        <section className="h-screen"></section>
+
       </>
   );
 };
@@ -26,14 +26,14 @@ const WatermarkWrapper = () => {
 };
 
 const Watermark = ({ reverse, text }) => (
-  <div className="flex -translate-y-12 select-none overflow-hidden">
+  <div className="flex select-none overflow-hidden">
     <TranslateWrapper reverse={reverse}>
-      <span className="w-fit whitespace-nowrap text-[20vmax] font-black uppercase leading-[0.75] text-slate-300">
+      <span className="w-fit whitespace-nowrap text-[10vmax] font-black uppercase leading-[0.75] text-slate-300">
         {text}
       </span>
     </TranslateWrapper>
     <TranslateWrapper reverse={reverse}>
-      <span className="ml-48 w-fit whitespace-nowrap text-[20vmax] font-black uppercase leading-[0.75] text-slate-300">
+      <span className="ml-48 w-fit whitespace-nowrap text-[10vmax] font-black uppercase leading-[0.75] text-slate-300">
         {text}
       </span>
     </TranslateWrapper>
@@ -45,7 +45,7 @@ const TranslateWrapper = ({ children, reverse }) => {
     <motion.div
       initial={{ translateX: reverse ? "-100%" : "0%" }}
       animate={{ translateX: reverse ? "0%" : "-100%" }}
-      transition={{ duration: 75, repeat: Infinity, ease: "linear" }}
+      transition={{ duration: 35, repeat: Infinity, ease: "linear" }}
       className="flex"
     >
       {children}

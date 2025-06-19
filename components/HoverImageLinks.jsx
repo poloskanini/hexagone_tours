@@ -21,7 +21,7 @@ export const HoverImageLinks = ({ locale, onClick, translations }) => {
       heading: translations.approch || "Une approche 360°",
       subheading: translations.sub_approch || "Découvrir notre vision",
       imgSrc: "/imgs/360.jpg",
-      href: "#approche-360",
+      href: "#approche",
     },
     {
       heading: translations.whoarewe || "Qui sommes-nous ?",

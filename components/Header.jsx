@@ -165,7 +165,7 @@ export default function Header() {
 
               <div className="relative w-full max-w-5xl mx-auto px-4 md:px-8">
                 <LogoMaskWithImage
-                  imageUrl="/imgs/pexels-marcin-dampc-807808-1684187.jpg"
+                  imageUrl="/imgs/pexels-sahil-prajapati-178989-974320.jpg"
                   className="absolute xl:-left-0 2xl:-left-70 top-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[1200px] md:h-[1200px] opacity-30 pointer-events-none z-0"
                 />
                 <div className="relative z-10">
