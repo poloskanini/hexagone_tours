@@ -1,5 +1,6 @@
 "use client";
 
+import useLenis from '../lib/hooks/useLenis';
 import './globals.css'
 import { Manrope, Playfair_Display } from "next/font/google";
 import { usePathname } from "next/navigation";
@@ -18,6 +19,7 @@ const playfair = Playfair_Display({
 });
 
 export default function RootLayout({ children }) {
+  useLenis()
 
   const pathname = usePathname();
 
