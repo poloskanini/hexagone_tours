@@ -1,6 +1,7 @@
 import HeroOverlayText from '../../components/HeroOverlayText'
 import HeroSection from '../../components/HeroSection'
 import { VanishText } from '../../components/VanishText'
+import FullscreenCarousel from '../../components/FullScreenCarousel'
 import { ImageTrailHero } from '../../components/ImageTrailHero'
 import OppoScroll from '../../components/OppositeScrollContent'
 
@@ -11,6 +12,7 @@ export default function HomePage() {
       <HeroOverlayText />
       <HeroSection />
       <VanishText />
+      <FullscreenCarousel />
       <ImageTrailHero />
       <OppoScroll />
       <div className='h-[150vh] flex justify-content items-center'>

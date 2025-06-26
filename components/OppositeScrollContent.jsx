@@ -114,7 +114,7 @@ const getItems = (t) => [
     id: 2,
     title: t.scroll.experienceTitle,
     description: t.scroll.experienceText,
-    img: "/imgs/pexels-marcin-dampc-807808-1684187_11zon.jpg",
+    img: "/imgs/pexels-olly-859264_11zon.jpg",
   },
   {
     id: 3,
@@ -126,6 +126,6 @@ const getItems = (t) => [
     id: 4,
     title: t.scroll.expertiseTitle,
     description: t.scroll.expertiseText,
-    img: "imgs/alexander-mils-sSKSg7fUEhc-unsplash_11zon.jpg",
+    img: "/imgs/1583345053333.jpg",
   },
 ]
