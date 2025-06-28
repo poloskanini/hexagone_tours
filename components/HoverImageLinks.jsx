@@ -80,7 +80,7 @@ const HoverLink = ({ heading, imgSrc, subheading, href, onClick }) => {
       onMouseMove={handleMouseMove}
       initial="initial"
       whileHover="whileHover"
-      className="group relative flex flex-row-reverse items-center justify-between border-b-2 border-neutral-300 py-4 transition-colors duration-500 hover:border-neutral-400 cursor-pointer"
+      className="group relative flex flex-row-reverse items-center justify-between border-b-2 border-black py-4 transition-colors duration-500 hover:border-neutral-400 cursor-pointer"
     >
       <div className="text-right">
         <motion.h2
@@ -89,7 +89,7 @@ const HoverLink = ({ heading, imgSrc, subheading, href, onClick }) => {
             whileHover: { x: 16 },
           }}
           transition={{ type: "spring", staggerChildren: 0.075, delayChildren: 0.25 }}
-          className="relative z-10 block text-3xl whitespace-nowrap font-bold text-neutral-300 transition-colors duration-500 group-hover:text-white md:text-6xl"
+          className="relative z-10 block text-3xl whitespace-nowrap font-bold text-black/80 transition-colors duration-500 group-hover:font-black md:text-5xl uppercase"
         >
           {heading.split(" ").map((word, wi) => (
             <React.Fragment key={wi}>
@@ -116,7 +116,7 @@ const HoverLink = ({ heading, imgSrc, subheading, href, onClick }) => {
           ))}
         </motion.h2>
 
-        <p className="relative z-10 mt-2 block text-base text-neutral-200 transition-colors duration-500 group-hover:text-white">
+        <p className="relative z-10 mt-2 block text-lg text-black transition-colors duration-500">
           {subheading}
         </p>
       </div>
@@ -138,7 +138,7 @@ const HoverLink = ({ heading, imgSrc, subheading, href, onClick }) => {
         transition={{ type: "spring" }}
         className="relative z-10 p-4"
       >
-        <FiArrowLeft className="text-5xl text-neutral-200" />
+        <FiArrowLeft className="text-5xl text-black" />
       </motion.div>
     </motion.div>
   );

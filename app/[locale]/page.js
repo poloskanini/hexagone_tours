@@ -4,6 +4,10 @@ import { VanishText } from '../../components/VanishText'
 import FullscreenCarousel from '../../components/FullScreenCarousel'
 import { ImageTrailHero } from '../../components/ImageTrailHero'
 import OppoScroll from '../../components/OppositeScrollContent'
+import TeamSection from '../../components/TeamSection'
+import RibbonLogos from '../../components/RibbonLogos'
+import MagnetButtonExample from '../../components/MagnetButton'
+import HexagoneFooter from '../../components/Footer'
 
 export default function HomePage() {
 
@@ -15,9 +19,10 @@ export default function HomePage() {
       <FullscreenCarousel />
       <ImageTrailHero />
       <OppoScroll />
-      <div className='h-[150vh] flex justify-content items-center'>
-        <p className='text-center mx-auto text-2xl italic'>🚧 Suite en construction...</p>
-      </div>
+      <TeamSection />
+      <RibbonLogos />
+      <MagnetButtonExample />
+      <HexagoneFooter />
     </main>
   )
 }

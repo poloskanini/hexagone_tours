@@ -1,5 +1,6 @@
 'use client'
 
+import Image from "next/image";
 import { usePathname } from 'next/navigation'
 import getTranslations from '../lib/getTranslations'
 import { motion } from 'framer-motion'
@@ -11,14 +12,14 @@ export default function HeroSection() {
 
   return (
     <>
-      <div className="container mx-auto sm:px-6 lg:px-8">
+      <div className="container mx-auto sm:px-6 lg:px-8 relative">
         <section className="text-left mt-14 flex flex-col justify-center px-4 scroll-mt-32" id="expertise">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.6 }}
             transition={{ duration: 1 }}
-            className="text-4xl lg:text-6xl font-playfair font-medium mb-8 text-primary"
+            className="text-4xl lg:text-6xl font-playfair font-medium mb-4 text-primary"
           >
             {t.home.title}
           </motion.h1>
@@ -37,6 +38,30 @@ export default function HeroSection() {
               </motion.p>
             ))}
           </div>
+
+          {/* Image centrée en bas du bloc texte sur mobile */}
+          <div className="2xl:hidden mt-6 mb-4 flex justify-center">
+            <div className="w-[200px] aspect-square overflow-hidden rounded-full border-2 border-primary shadow-lg">
+              <Image
+                src="/imgs/chris-karidis-nnzkZNYWHaU-unsplash_11zon.jpg"
+                alt="Illustration"
+                width={200}
+                height={200}
+                className="object-cover w-full h-full"
+              />
+            </div>
+          </div>
+
+          {/* Image ronde centrée verticalement entre texte et aside (visible sur lg uniquement) */}
+          <div className="hidden 2xl:block absolute right-[6.5rem] top-[80%] -translate-y-1/2">
+            <Image
+              src="/imgs/chris-karidis-nnzkZNYWHaU-unsplash_11zon.jpg"
+              alt="Illustration"
+              width={280}
+              height={280}
+              className="rounded-full object-cover aspect-square border-2 border-primary shadow-lg"
+            />
+          </div>
         </section>
       </div>
 
@@ -50,7 +75,7 @@ export default function HeroSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.6 }}
             transition={{ duration: 1, delay: 1 }}
-            className="flex flex-col items-center font-playfair pr-2 lg:pr-5 -mt-62 lg:-mt-72"
+            className="flex flex-col items-center font-playfair pr-2 lg:pr-5 -mt-62 lg:-mt-72 xl:-mt-82"
           >
             <span className="text-md lg:text-2xl [writing-mode:vertical-rl] [text-orientation:upright]">
               {t.home.aside}

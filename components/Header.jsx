@@ -114,7 +114,7 @@ export default function Header() {
             ref={menuButtonRef}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
-            className={`tracking-wide cursor-pointer text-lg lg:text-2xl font-thin transition-colors duration-300 xl:m-6 relative p-2 -m-2 ${
+            className={`tracking-wide cursor-pointer text-lg lg:text-xl font-thin transition-colors duration-300 xl:m-6 relative p-2 -m-2 ${
               isScrolled ? "text-black" : "text-white"
             }`}
           >
@@ -138,7 +138,7 @@ export default function Header() {
             />
 
             <motion.div
-              className="fixed inset-0 right-0 w-full h-screen bg-cyan-900 z-50 flex flex-col justify-center items-center text-neutral-400"
+              className="fixed inset-0 right-0 w-full h-screen bg-sky-200 z-50 flex flex-col justify-center items-center text-black/50"
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
@@ -152,7 +152,7 @@ export default function Header() {
                   menuRef.current = false;
                   forceUpdate({});
                 }}
-                className="text-5xl cursor-pointer hover:text-neutral-100 transition-colors duration-300"
+                className="text-5xl cursor-pointer hover:text-black hover:font-medium transition-colors duration-300"
                 style={{
                   position: "absolute",
                   top: menuBtnPos.top - 20,
@@ -166,7 +166,7 @@ export default function Header() {
               <div className="relative w-full max-w-5xl mx-auto px-4 md:px-8">
                 <LogoMaskWithImage
                   imageUrl="/imgs/pexels-sahil-prajapati-178989-974320.jpg"
-                  className="absolute xl:-left-0 2xl:-left-70 top-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[1200px] md:h-[1200px] opacity-60 pointer-events-none z-0"
+                  className="absolute xl:-left-0 2xl:-left-70 top-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[1200px] md:h-[1200px] opacity-20 pointer-events-none z-0"
                 />
                 <div className="relative z-10">
                   <HoverImageLinks
