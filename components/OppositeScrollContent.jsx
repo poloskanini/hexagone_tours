@@ -62,11 +62,11 @@ const Content = ({ content, locale }) => {
               <use href="#quote-deco" x="86"></use>
             </svg>
             )}
-            <h3 className="text-3xl md:text-5xl font-playfair font-medium mb-6 leading-tight">
+            <h3 className="text-2xl sm:text-3xl md:text-5xl font-playfair font-medium mb-6 leading-tight">
               {title}
             </h3>
             {description && (
-              <p className="text-base md:text-xl font-light leading-relaxed max-w-2xl">
+              <p className="text-sm sm:text-base md:text-xl font-light leading-relaxed max-w-2xl">
                 {description}
               </p>
             )}

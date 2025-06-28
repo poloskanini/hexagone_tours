@@ -1,8 +1,8 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
-import LogoMaskWhite from './LogoMaskWhite'
 import getTranslations from '../lib/getTranslations'
 
 export default function HexagoneFooter() {
@@ -15,8 +15,14 @@ export default function HexagoneFooter() {
     <footer className="w-full bg-gradient-to-b from-[#1B1416] to-black px-6 py-12 text-neutral-100">
       <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-12 md:flex-row">
         {/* Logo à gauche */}
-        <div className="w-[200px]">
-          <LogoMaskWhite className="w-full h-auto" />
+        <div className="relative w-[200px] aspect-[1034/781]">
+          <Image
+            src="/imgs/LogoHexaWhite.png"
+            alt="Logo Hexagone Tours"
+            fill
+            className="object-contain"
+            priority
+          />
         </div>
 
         {/* Liens à droite */}
