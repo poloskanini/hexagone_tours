@@ -59,7 +59,7 @@ export default function HexagoneFooter() {
       <div className="mt-12 text-center text-sm text-neutral-400 space-y-1">
         <p>© Hexagone Tours {currentYear} – {t.footer.rights}</p>
         <p>
-          <Link href="/politique-de-confidentialite" className="hover:underline">
+          <Link href={`/${locale}/politique-de-confidentialite`} className="hover:underline">
             {t.footer.privacy}
           </Link>
         </p>

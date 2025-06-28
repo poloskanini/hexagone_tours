@@ -68,9 +68,9 @@ export default function TeamSection() {
               <p className="text-xl font-light text-secondary">
                 {t.people?.[index]?.role || ''}
               </p>
-              <p className="mt-4 text-base text-gray-700 leading-relaxed">
+              {/* <p className="mt-4 text-base text-gray-700 leading-relaxed">
                 {t.people?.[index]?.bio || ''}
-              </p>
+              </p> */}
 
               <ul role="list" className="mt-4 flex gap-x-8">
                 <li>
