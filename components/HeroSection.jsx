@@ -52,16 +52,7 @@ export default function HeroSection() {
             </div>
           </div>
 
-          {/* Image ronde centrée verticalement entre texte et aside (visible sur lg uniquement) */}
-          <div className="hidden 2xl:block absolute right-[6.5rem] top-[80%] -translate-y-1/2">
-            <Image
-              src="/imgs/chris-karidis-nnzkZNYWHaU-unsplash_11zon.jpg"
-              alt="Illustration"
-              width={280}
-              height={280}
-              className="rounded-full object-cover aspect-square border-2 border-primary shadow-lg"
-            />
-          </div>
+          
         </section>
       </div>
 

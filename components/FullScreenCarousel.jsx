@@ -89,6 +89,78 @@ export default function FullscreenCarousel() {
     }, 700);
   };
 
+  const handlePrev = () => {
+    if (animating || slides.length < 2) return;
+    setAnimating(true);
+  
+    const track = trackRef.current;
+    const cardCount = track.children.length;
+    const cardWidth = track.children[0]?.offsetWidth || 0;
+    const gap = 16;
+    const offset = cardWidth + gap;
+  
+    // Décale visuellement le track vers la gauche d’un cran supplémentaire
+    track.style.transition = "none";
+    track.style.transform = `translateX(-${offset}px)`;
+  
+    // Force le reflow
+    track.getBoundingClientRect();
+  
+    // Lance l'animation vers la droite (retour visuel)
+    track.style.transition = "transform 0.7s ease";
+    track.style.transform = "translateX(0)";
+  
+    // Animation zoom toujours depuis la **dernière miniature**
+    const lastSlide = slides[slides.length - 1];
+    const containerRect = containerRef.current.getBoundingClientRect();
+    const lastCard = track.children[cardCount - 1];
+    const rect = lastCard.getBoundingClientRect();
+  
+    const zoomImage = document.createElement("img");
+    zoomImage.src = lastSlide.image;
+    zoomImage.className = "absolute object-cover z-30 rounded-xl will-change-transform";
+    Object.assign(zoomImage.style, {
+      top: `${rect.top - containerRect.top}px`,
+      left: `${rect.left - containerRect.left}px`,
+      width: `${rect.width}px`,
+      height: `${rect.height}px`,
+      transition: "all 0.7s ease",
+    });
+  
+    containerRef.current.appendChild(zoomImage);
+    lastCard.style.visibility = "hidden";
+  
+    requestAnimationFrame(() => {
+      Object.assign(zoomImage.style, {
+        top: "0",
+        left: "0",
+        width: `${containerRect.width}px`,
+        height: `${containerRect.height}px`,
+        borderRadius: "0",
+        transform: "scale(1.0001)",
+      });
+    });
+  
+    setTimeout(() => {
+      // Réordonne après l’animation
+      const newSlides = [lastSlide, ...slides.slice(0, -1)];
+      setSlides(newSlides);
+      setCurrent(lastSlide);
+  
+      if (zoomImage && zoomImage.parentNode) {
+        zoomImage.remove();
+      }
+      if (lastCard) lastCard.style.visibility = "visible";
+  
+      // Reset track
+      track.style.transition = "none";
+      track.style.transform = "translateX(0)";
+  
+      setAnimating(false);
+    }, 700);
+  };
+  
+
   return (
     <div ref={containerRef} className="relative w-full h-screen overflow-hidden">
       {/* Fond principal */}
@@ -142,24 +214,31 @@ export default function FullscreenCarousel() {
         </div>
       </div>
 
-      {/* Bouton suivant */}
-      <motion.div
-        className="absolute md:top-92 2xl:top-112 left-[34%] z-40"
-        animate={buttonControls}
-        initial={{ scale: 1 }}
-      >
-        <button
-          onClick={handleNext}
-          className="group w-20 h-20 bg-white/10 border-2 border-white text-white text-[3.5rem] font-normal cursor-pointer leading-none rounded-full flex items-center justify-center transition duration-300 ease-in-out hover:scale-110 relative"
-        >
-          <span>
-            ›
-          </span>
+      {/* Groupe de flèches, centré et espacé */}
+      <div className="absolute top-[46%] sm:top-[70%] md:top-[60%] lg:top-[15%] 2xl:top-[40%] left-1/2 -translate-x-1/2 z-40 flex gap-8 sm:gap-12 md:gap-16">
+        {/* Précédent */}
+        <motion.div animate={buttonControls} initial={{ scale: 1 }}>
+          <button
+            onClick={handlePrev}
+            className="group w-16 h-16 sm:w-20 sm:h-20 bg-white/10 border-2 border-white text-white text-[2.5rem] sm:text-[3.5rem] font-normal cursor-pointer leading-none rounded-full flex items-center justify-center transition duration-300 ease-in-out hover:scale-110 relative"
+          >
+            ‹
+            <span className="absolute inset-0 rounded-full animate-ping border-2 border-white/30" />
+          </button>
+        </motion.div>
 
-          {/* Halo animé autour du bouton */}
-          <span className="absolute inset-0 rounded-full animate-ping border-2 border-white/30" />
-        </button>
-      </motion.div>
+        {/* Suivant */}
+        <motion.div animate={buttonControls} initial={{ scale: 1 }}>
+          <button
+            onClick={handleNext}
+            className="group w-16 h-16 sm:w-20 sm:h-20 bg-white/10 border-2 border-white text-white text-[2.5rem] sm:text-[3.5rem] font-normal cursor-pointer leading-none rounded-full flex items-center justify-center transition duration-300 ease-in-out hover:scale-110 relative"
+          >
+            ›
+            <span className="absolute inset-0 rounded-full animate-ping border-2 border-white/30" />
+          </button>
+        </motion.div>
+      </div>
+
 
       {/* <motion.div
         className="absolute top-112 left-[34%] z-40"
