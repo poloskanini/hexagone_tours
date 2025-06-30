@@ -41,7 +41,7 @@ const Content = ({ content, locale }) => {
               className="hidden lg:flex flex-col items-center mr-12"
             >
               <span className="text-md uppercase lg:text-2xl [writing-mode:vertical-rl] [text-orientation:upright] font-playfair">
-                {locale === "en" ? "Our approach" : "Notre approche"}
+                {locale === "en" ? "Our services" : "Nos services"}
               </span>
               <div className="w-px h-32 bg-white mt-4" />
             </motion.div>
@@ -108,24 +108,24 @@ const getItems = (t) => [
     id: 1,
     title: t.scroll.quote,
     description: "",
-    img: "/imgs/DSC07945_11zon.jpg",
+    img: "/imgs/getty-images-lPOjkff2nsc-unsplash_11zon.jpg",
   },
   {
     id: 2,
     title: t.scroll.experienceTitle,
     description: t.scroll.experienceText,
-    img: "/imgs/pexels-olly-859264_11zon.jpg",
+    img: "/imgs/eiffel3.jpg",
   },
   {
     id: 3,
     title: t.scroll.briefingTitle,
     description: t.scroll.briefingText,
-    img: "/imgs/eean-chen-U0AjXjoVZGU-unsplash_11zon.jpg",
+    img: "/imgs/seminaire2.jpg",
   },
   {
     id: 4,
     title: t.scroll.expertiseTitle,
     description: t.scroll.expertiseText,
-    img: "/imgs/1583345053333.jpg",
+    img: "/imgs/avion3.jpg",
   },
 ]
