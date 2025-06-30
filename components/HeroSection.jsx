@@ -38,21 +38,7 @@ export default function HeroSection() {
               </motion.p>
             ))}
           </div>
-
-          {/* Image centrée en bas du bloc texte sur mobile */}
-          <div className="2xl:hidden mt-6 mb-4 flex justify-center">
-            <div className="w-[200px] aspect-square overflow-hidden rounded-full border-2 border-primary shadow-lg">
-              <Image
-                src="/imgs/chris-karidis-nnzkZNYWHaU-unsplash_11zon.jpg"
-                alt="Illustration"
-                width={200}
-                height={200}
-                className="object-cover w-full h-full"
-              />
-            </div>
-          </div>
-
-          
+     
         </section>
       </div>
 
