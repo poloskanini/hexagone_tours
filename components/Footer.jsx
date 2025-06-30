@@ -12,7 +12,7 @@ export default function HexagoneFooter() {
   const t = getTranslations(locale)
 
   return (
-    <footer className="w-full bg-gradient-to-b from-[#1B1416] to-black px-6 py-12 text-neutral-100">
+    <footer className="w-full bg-gradient-to-b from-[#6A6A6A] to-[#4C4C4C] px-6 py-12 text-neutral-100">
       <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-12 md:flex-row">
         {/* Logo à gauche */}
         <div className="relative w-[200px] aspect-[1034/781]">
