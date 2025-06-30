@@ -2,7 +2,7 @@
 
 import useLenis from '../lib/hooks/useLenis';
 import './globals.css'
-import { Manrope, Playfair_Display } from "next/font/google";
+import { Manrope, Playfair_Display, Raleway } from "next/font/google";
 import { usePathname } from "next/navigation";
 import Header from '../components/Header'
 import VideoBackground from '../components/VideoBackground'
@@ -18,6 +18,13 @@ const playfair = Playfair_Display({
   variable: '--font-playfair',
 });
 
+const raleway = Raleway({
+  subsets: ['latin'],
+  weight: ['100','200','300', '400', '500', '600', '700','800','900'],
+  display: 'swap',
+  variable: '--font-raleway',
+})
+
 export default function RootLayout({ children }) {
   useLenis()
 
@@ -27,7 +34,7 @@ export default function RootLayout({ children }) {
     pathname === "/" || pathname === "/fr" || pathname === "/en";
 
   return (
-    <html lang="fr" className={`${manrope.variable} ${playfair.variable}`}>
+    <html lang="fr" className={`${manrope.variable} ${playfair.variable} ${raleway.variable}`}>
       <body>
         <Header />
         {showVideo && (

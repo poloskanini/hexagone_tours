@@ -38,7 +38,7 @@ export const HoverImageLinks = ({ locale, onClick, translations }) => {
   ];
 
   return (
-    <section className="bg-transparent">
+    <section className="bg-transparent font-raleway">
       {links.map((link, index) => (
         <HoverLink key={index} {...link} onClick={onClick} />
       ))}

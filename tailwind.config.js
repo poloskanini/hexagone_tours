@@ -14,6 +14,7 @@ module.exports = {
       fontFamily: {
         manrope: ['var(--font-manrope)', 'sans-serif'],
         playfair: ['var(--font-playfair)'],
+        raleway: ['var(--font-raleway)', 'sans-serif'],
       },
     },
   },
