@@ -92,7 +92,7 @@ const Images = ({ content, scrollYProgress }) => {
             key={id}
             alt={title}
             src={img}
-            className="h-screen w-full object-cover object-center md:object-left"
+            className="h-screen w-full object-cover object-center"
           />
         ))}
       </motion.div>

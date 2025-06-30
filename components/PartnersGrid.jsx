@@ -13,10 +13,12 @@ const partners = [
   { imgUrl: '/imgs/logos/takeda.png', name: 'Takeda' },
   { imgUrl: '/imgs/logos/roche.png', name: 'Roche' },
   { imgUrl: '/imgs/logos/airp.png', name: 'Abdi Brahim Remède Pharma' },
-  { imgUrl: '/imgs/logos/biopharma.png', name: 'Biopharma' },
+  { imgUrl: '/imgs/logos/biopharm2.png', name: 'Biopharm' },
   { imgUrl: '/imgs/logos/elkendi.png', name: 'El Kendi MS Pharma' },
   { imgUrl: '/imgs/logos/drreddys.png', name: "Dr Reddy's" },
-  { imgUrl: '/imgs/logos/allwaystravel.jpeg', name: 'Always Travel Algérie' },
+  { imgUrl: '/imgs/logos/all-waystravel.png', name: 'Always Travel' },
+  { imgUrl: '/imgs/logos/beker.png', name: 'Beker' },
+  { imgUrl: '/imgs/logos/Logo_TotalEnergies.png', name: 'Total Energies' },
 ]
 
 export default function PartnersGrid() {
@@ -27,16 +29,19 @@ export default function PartnersGrid() {
           Ils nous ont fait confiance :
         </h2>
 
-        <div className="-mx-6 grid grid-cols-2 gap-0.5 overflow-hidden sm:mx-0 sm:rounded-2xl md:grid-cols-3 lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
           {partners.map((partner, index) => (
-            <div key={index} className="bg-gray-100 p-6 sm:p-10 flex items-center justify-center">
-              <div className="relative w-[158px] h-[48px]">
+            <div
+              key={index}
+              className="flex items-center justify-center bg-gray-100 p-4 sm:p-6 h-[120px] rounded-md"
+            >
+              <div className="relative w-full h-20 sm:h-24">
                 <Image
                   src={partner.imgUrl}
                   alt={partner.name}
                   fill
-                  className="object-contain"
-                  sizes="(max-width: 768px) 100vw, 158px"
+                  className="object-contain p-2"
+                  sizes="(max-width: 768px) 100vw, 25vw"
                 />
               </div>
             </div>
