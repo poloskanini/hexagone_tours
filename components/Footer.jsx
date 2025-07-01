@@ -30,7 +30,7 @@ export default function HexagoneFooter() {
       {/* ✅ Contenu principal du footer */}
       <div className="relative z-20 mx-auto max-w-7xl grid grid-cols-1 md:grid-cols-3 items-center gap-8 text-center">
         {/* Logo */}
-        <div className="flex">
+        <div className="flex justify-center">
           <div className="relative w-[200px] aspect-[1034/781]">
             <Image
               src="/imgs/LogoHexaWhite.png"
@@ -83,35 +83,49 @@ export default function HexagoneFooter() {
         </ul>
       </div>
 
-      <div className="relative z-20 mt-12 mx-auto max-w-7xl grid grid-cols-1 md:grid-cols-3 text-sm text-neutral-400">
-        {/* Gauche : mentions légales */}
+      {/* Mentions */}
+      <div className="relative z-20 mt-12 mx-auto max-w-7xl grid grid-cols-1 md:grid-cols-3 text-sm text-neutral-400 items-center">
+        {/* Gauche */}
         <div className="text-center md:text-left space-y-1">
           <p>© Hexagone Tours {currentYear} – {t.footer.rights}</p>
           <p>
             <Link href={`/${locale}/politique-de-confidentialite`} className="hover:opacity-80 hover:underline transition-opacity duration-200 ease-in-out">
               {t.footer.privacy}
             </Link>
+            <span> - </span>
+            <Link href={`/${locale}/mentions-legales`} className="hover:opacity-80 hover:underline transition-opacity duration-200 ease-in-out">
+              {t.footer.mentions}
+            </Link>
           </p>
         </div>
 
-        {/* Centre vide (ou logo si souhaité) */}
-        <div />
+        {/* Centre : logos partenaires */}
+        <div className="flex items-center justify-center gap-6 mt-6 md:mt-0 sm:mb-10 md:mb-0">
+          <div className="relative w-20 h-10">
+            <Image src="/imgs/logos/APST.png" alt="APST" fill className="object-contain bg-white p-1" />
+          </div>
+          <div className="relative w-20 h-10">
+            <Image src="/imgs/logos/ATOUT_FRANCE.png" alt="Atout France" fill className="object-contain bg-white p-1" />
+          </div>
+          <div className="relative w-20 h-10">
+            <Image src="/imgs/logos/HISCOX.jpeg" alt="Hiscox" fill className="object-contain bg-white p-1" />
+          </div>
+        </div>
 
-        {/* Droite : crédit */}
+        {/* Droite */}
         <div className="text-center md:text-right">
           <p>
             <Link
               href="https://www.nicolasbarthes.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:opacity-80 hover:underline transition-opacity duration-200 ease-in-out"
+              className="hover:opacity-80 underline transition-opacity duration-200 ease-in-out"
             >
               {t.footer.credit}
             </Link>
           </p>
         </div>
       </div>
-
     </footer>
   )
 }
