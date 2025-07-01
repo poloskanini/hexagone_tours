@@ -13,7 +13,7 @@ const partners = [
   { imgUrl: '/imgs/logos/takeda.png', name: 'Takeda' },
   { imgUrl: '/imgs/logos/roche.png', name: 'Roche' },
   { imgUrl: '/imgs/logos/airp.png', name: 'Abdi Brahim Remède Pharma' },
-  { imgUrl: '/imgs/logos/biopharm2.png', name: 'Biopharm' },
+  { imgUrl: '/imgs/logos/biopharm.png', name: 'Biopharm' },
   { imgUrl: '/imgs/logos/elkendi.png', name: 'El Kendi MS Pharma' },
   { imgUrl: '/imgs/logos/drreddys.png', name: "Dr Reddy's" },
   { imgUrl: '/imgs/logos/all-waystravel.png', name: 'Always Travel' },

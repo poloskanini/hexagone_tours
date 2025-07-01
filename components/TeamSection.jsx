@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import { motion } from 'framer-motion'
 import { usePathname } from 'next/navigation'
 import getTranslations from '../lib/getTranslations'
 
@@ -37,7 +38,7 @@ export default function TeamSection() {
   const t = getTranslations(locale)
 
   return (
-    <section className="scroll-mt-32 bg-white py-24 md:py-32 lg:py-30" id="qui-sommes-nous">
+    <section className="relative scroll-mt-32 bg-white py-24 md:py-32 lg:py-30" id="qui-sommes-nous">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-left mb-20 max-w-3xl">
           <h2 className="text-4xl lg:text-6xl font-playfair font-medium text-primary">
@@ -84,6 +85,20 @@ export default function TeamSection() {
           ))}
         </ul>
       </div>
+
+      {/* Bloc vertical "Notre équipe" à droite */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.6 }}
+        transition={{ duration: 1 }}
+        className="hidden lg:flex flex-col items-center font-playfair absolute top-42 right-4 xl:right-12"
+      >
+        <span className="text-md lg:text-2xl [writing-mode:vertical-rl] [text-orientation:upright] text-secondary">
+          {locale === 'en' ? 'Our Team' : 'QUI SOMMES-NOUS ?'}
+        </span>
+        <div className="w-px h-32 bg-secondary mt-4" />
+      </motion.div>
     </section>
   )
 }

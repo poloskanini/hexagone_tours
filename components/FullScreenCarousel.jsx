@@ -25,13 +25,28 @@ export default function FullscreenCarousel() {
 
   // Animation "pulse" lente du bouton
   useEffect(() => {
+    let isMounted = true;
+
     const loopPulse = async () => {
-      while (true) {
-        await buttonControls.start({ scale: 1.2, transition: { duration: 1.8, ease: "easeInOut" } });
-        await buttonControls.start({ scale: 1, transition: { duration: 1.8, ease: "easeInOut" } });
+      while (isMounted) {
+        await buttonControls.start({
+          scale: 1.2,
+          transition: { duration: 1.8, ease: "easeInOut" },
+        });
+        await buttonControls.start({
+          scale: 1,
+          transition: { duration: 1.8, ease: "easeInOut" },
+        });
       }
     };
-    loopPulse();
+
+    requestAnimationFrame(() => {
+      loopPulse();
+    });
+
+    return () => {
+      isMounted = false;
+    };
   }, [buttonControls]);
 
   const handleNext = () => {
