@@ -135,7 +135,7 @@ const getItems = (locale) => {
           our team provides <strong>tailor-made solutions</strong> regardless of the format or complexity.
         </>
       ),
-      img: "/imgs/eiffel5.jpg",
+      img: "/imgs/eiffel3.jpg",
     },
     {
       id: 3,
