@@ -9,7 +9,7 @@ const partners = [
   { imgUrl: '/imgs/logos/slb.png', name: 'Schlumberger' },
   { imgUrl: '/imgs/logos/hikma.png', name: 'Hikma' },
   { imgUrl: '/imgs/logos/amgen.png', name: 'Amgen' },
-  { imgUrl: '/imgs/logos/danone.png', name: 'Danone' },
+  { imgUrl: '/imgs/logos/danone3.png', name: 'Danone' },
   { imgUrl: '/imgs/logos/bayer.png', name: 'Bayer' },
   { imgUrl: '/imgs/logos/takeda.png', name: 'Takeda' },
   { imgUrl: '/imgs/logos/roche.png', name: 'Roche' },
