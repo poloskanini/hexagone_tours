@@ -118,20 +118,20 @@ const getItems = (locale) => {
       title: isFr ? "Depuis plus de 10 ans" : "For over 10 years",
       description: isFr ? (
         <>
-          <strong className="font-bold text-primary">Basés à Paris</strong>, nous accompagnons entreprises, agences et institutions
+          <strong className="font-semibold text-primary">Basés à Paris</strong>, nous accompagnons entreprises, agences et institutions
           dans la création et la réalisation de leurs événements en France comme à l’étranger.
           <br />
           <br />
-          <strong className="font-bold">Congrès, séminaires, séjours d’affaires, incentives, circuits culturels ou soirées d’exception : </strong>
+          <strong className="font-semibold">Congrès, séminaires, séjours d’affaires, incentives, circuits culturels ou soirées d’exception : </strong>
           notre équipe vous propose des solutions <strong>sur mesure</strong>, quel que soit le format ou la complexité.
         </>
       ) : (
         <>
-          <strong className="font-bold text-primary">Based in Paris</strong>, we support companies, agencies, and institutions in designing
+          <strong className="font-semibold text-primary">Based in Paris</strong>, we support companies, agencies, and institutions in designing
           and delivering their events in France and abroad.
           <br />
           <br />
-          <strong className="font-bold">Conventions, seminars, business trips, incentives, cultural tours, or exceptional evenings : </strong>
+          <strong className="font-semibold">Conventions, seminars, business trips, incentives, cultural tours, or exceptional evenings : </strong>
           our team provides <strong>tailor-made solutions</strong> regardless of the format or complexity.
         </>
       ),
@@ -142,13 +142,13 @@ const getItems = (locale) => {
       title: isFr ? "Congrès & Séminaires" : "Congresses & Seminars",
       description: isFr ? (
         <>
-          Experts des <strong className="font-bold">congrès pharmaceutiques</strong> et des <em>Cycle Meetings</em>,
+          Experts des <strong className="font-semibold">congrès pharmaceutiques</strong> et des <em>Cycle Meetings</em>,
           nous prenons en charge l’organisation de vos événements de A à Z.
           <br />
           Lieux adaptés, hébergements sélectionnés, restauration sur mesure, activités de cohésion…
           <br />
           <br />
-          Chaque détail est pensé pour créer une <strong className="font-bold">expérience à la fois fluide, engageante et personnalisée.</strong>
+          Chaque détail est pensé pour créer une <strong className="font-semibold">expérience à la fois fluide, engageante et personnalisée.</strong>
         </>
       ) : (
         <>
@@ -158,7 +158,7 @@ const getItems = (locale) => {
           Suitable venues, selected accommodations, tailor-made catering, team-building activities…
           <br />
           <br />
-          Every detail is crafted to deliver a <strong className="font-bold">seamless, engaging, and personalized experience.</strong>
+          Every detail is crafted to deliver a <strong className="font-semibold">seamless, engaging, and personalized experience.</strong>
         </>
       ),
       img: "/imgs/seminaire3.jpg",
@@ -185,7 +185,7 @@ const getItems = (locale) => {
           A <em>tailored</em>, competitive, and <strong>top-quality</strong> experience.
         </>
       ),
-      img: "/imgs/avion1.jpg",
+      img: "/imgs/vignes.jpg",
     },
   ]
 }

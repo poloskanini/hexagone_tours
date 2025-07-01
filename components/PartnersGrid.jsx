@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import { usePathname } from 'next/navigation'
 
 const partners = [
   { imgUrl: '/imgs/logos/sanofi.png', name: 'Sanofi' },
@@ -16,17 +17,22 @@ const partners = [
   { imgUrl: '/imgs/logos/biopharm.png', name: 'Biopharm' },
   { imgUrl: '/imgs/logos/elkendi.png', name: 'El Kendi MS Pharma' },
   { imgUrl: '/imgs/logos/drreddys.png', name: "Dr Reddy's" },
-  { imgUrl: '/imgs/logos/all-waystravel.png', name: 'Always Travel' },
+  { imgUrl: '/imgs/logos/allwaystravel2.png', name: 'Always Travel' },
   { imgUrl: '/imgs/logos/beker.png', name: 'Beker' },
   { imgUrl: '/imgs/logos/Logo_TotalEnergies.png', name: 'Total Energies' },
 ]
 
 export default function PartnersGrid() {
+  const pathname = usePathname()
+  const locale = pathname.split('/')[1] || 'fr'
+
+  const title = locale === 'en' ? 'They trusted us:' : 'Ils nous ont fait confiance :'
+
   return (
     <section className="bg-white py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <h2 className="mb-12 text-center text-2xl font-medium text-gray-800 md:text-4xl font-playfair">
-          Ils nous ont fait confiance :
+          {title}
         </h2>
 
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
@@ -40,7 +46,9 @@ export default function PartnersGrid() {
                   src={partner.imgUrl}
                   alt={partner.name}
                   fill
-                  className="object-contain p-2"
+                  className={`object-contain p-2 ${
+                    partner.name === 'Always Travel' ? 'scale-155' : ''
+                  }`}
                   sizes="(max-width: 768px) 100vw, 25vw"
                 />
               </div>

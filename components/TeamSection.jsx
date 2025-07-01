@@ -8,25 +8,25 @@ import getTranslations from '../lib/getTranslations'
 const people = [
   {
     name: 'Timothée MARCHAIS',
-    imageUrl: '/imgs/team/PHOTOCALL-1-TIMO.jpg',
+    imageUrl: '/imgs/team/greyBackgroundTeam/greyTimo.jpg',
     email: 'timothee@hexagone-tours.com',
     phone: '+33695869084',
   },
   {
     name: 'Raouf MAHBOUB',
-    imageUrl: '/imgs/team/PHOTOCALL-1-RAOUF.jpg',
+    imageUrl: '/imgs/team/greyBackgroundTeam/greyRaouf.jpg',
     email: 'raouf@hexagone-tours.com',
     phone: '+33612190349',
   },
   {
     name: 'Lamine MOKRANE',
-    imageUrl: '/imgs/team/PHOTOCALL-1-LAMINE.jpg',
+    imageUrl: '/imgs/team/greyBackgroundTeam/greyLamine.jpg',
     email: 'lamine@hexagone-tours.com',
     phone: '+33650038632',
   },
   {
     name: 'Hakim OUHADJ',
-    imageUrl: '/', // à compléter si besoin
+    imageUrl: '/', // à compléter
     email: 'hakim@hexagone-tours.com',
     phone: '+33761024330',
   },
@@ -52,12 +52,12 @@ export default function TeamSection() {
         <ul role="list" className="grid grid-cols-1 gap-y-12 gap-x-10 sm:grid-cols-2 lg:grid-cols-4">
           {people.map((person, index) => (
             <li key={person.name} className="mx-auto text-center">
-              <div className="relative aspect-[3/4] w-full max-w-[200px] overflow-hidden rounded-xl border border-gray-200 shadow-md mx-auto">
+              <div className="relative aspect-square w-full max-w-[200px] overflow-hidden rounded-full border border-gray-200 shadow-md mx-auto">
                 <Image
                   src={person.imageUrl}
                   alt={person.name}
                   fill
-                  className="object-cover"
+                  className="object-cover [object-position:center_30%]"
                   sizes="(max-width: 768px) 100vw, 33vw"
                 />
               </div>

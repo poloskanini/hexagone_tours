@@ -6,6 +6,7 @@ import { ImageTrailHero } from '../../components/ImageTrailHero'
 import OppoScroll from '../../components/OppositeScrollContent'
 import TeamSection from '../../components/TeamSection'
 // import RibbonLogos from '../../components/RibbonLogos'
+import AboutHexagone from '../../components/AboutHexagone'
 import PartnersGrid from '../../components/PartnersGrid'
 import MagnetButtonExample from '../../components/MagnetButton'
 import HexagoneFooter from '../../components/Footer'
@@ -22,6 +23,7 @@ export default function HomePage() {
       <OppoScroll />
       <TeamSection />
       {/* <RibbonLogos /> */}
+      <AboutHexagone />
       <PartnersGrid />
       <MagnetButtonExample />
       <HexagoneFooter />

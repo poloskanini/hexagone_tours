@@ -34,7 +34,7 @@ export default function RootLayout({ children }) {
     pathname === "/" || pathname === "/fr" || pathname === "/en";
 
   return (
-    <html lang="fr" className={`${manrope.variable} ${playfair.variable} ${raleway.variable}`}>
+    <html lang="fr" className={`${playfair.variable} ${raleway.variable}`}>
       <body>
         <Header />
         {showVideo && (

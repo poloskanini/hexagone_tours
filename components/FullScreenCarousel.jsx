@@ -222,7 +222,7 @@ export default function FullscreenCarousel() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-lg sm:text-xl md:text-2xl lg:text-2xl font-normal mb-4"
+            className="text-lg sm:text-xl md:text-2xl lg:text-2xl font-light mb-4 font-raleway"
           >
             {current.subtitle}
           </motion.h3>
