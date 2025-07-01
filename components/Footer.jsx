@@ -83,10 +83,10 @@ export default function HexagoneFooter() {
         </ul>
       </div>
 
-      {/* Mentions */}
-      <div className="relative z-20 mt-12 mx-auto max-w-7xl grid grid-cols-1 md:grid-cols-3 text-sm text-neutral-400 items-center">
-        {/* Gauche */}
-        <div className="text-center md:text-left space-y-1">
+      {/* Bloc logos + mentions */}
+      <div className="relative z-20 mt-12 mx-auto max-w-7xl flex flex-col md:grid md:grid-cols-3 text-sm text-neutral-400 items-center md:items-start gap-6">
+        {/* Gauche (desktop), dessous les logos en mobile */}
+        <div className="order-2 md:order-1 text-center md:text-left space-y-1">
           <p>© Hexagone Tours {currentYear} – {t.footer.rights}</p>
           <p>
             <Link href={`/${locale}/politique-de-confidentialite`} className="hover:opacity-80 hover:underline transition-opacity duration-200 ease-in-out">
@@ -100,20 +100,38 @@ export default function HexagoneFooter() {
         </div>
 
         {/* Centre : logos partenaires */}
-        <div className="flex items-center justify-center gap-6 mt-6 md:mt-0 sm:mb-10 md:mb-0">
+        <div className="order-1 md:order-2 flex items-center justify-center gap-6">
           <div className="relative w-20 h-10">
-            <Image src="/imgs/logos/APST.png" alt="APST" fill className="object-contain bg-white p-1" />
+            <Image
+              src="/imgs/logos/APST.png"
+              alt="APST"
+              fill
+              sizes="(max-width: 768px) 150px, 200px"
+              className="object-contain bg-white p-1"
+            />
           </div>
           <div className="relative w-20 h-10">
-            <Image src="/imgs/logos/ATOUT_FRANCE.png" alt="Atout France" fill className="object-contain bg-white p-1" />
+            <Image
+                src="/imgs/logos/ATOUT_FRANCE.png"
+                alt="Atout France"
+                fill
+                sizes="(max-width: 768px) 150px, 200px"
+                className="object-contain bg-white p-1"
+              />
           </div>
           <div className="relative w-20 h-10">
-            <Image src="/imgs/logos/HISCOX.jpeg" alt="Hiscox" fill className="object-contain bg-white p-1" />
+            <Image
+                src="/imgs/logos/HISCOX.jpeg"
+                alt="Hiscox"
+                fill
+                sizes="(max-width: 768px) 150px, 200px"
+                className="object-contain bg-white p-1"
+              />
           </div>
         </div>
 
         {/* Droite */}
-        <div className="text-center md:text-right">
+        <div className="order-3 text-center md:text-right mt-4 md:mt-0">
           <p>
             <Link
               href="https://www.nicolasbarthes.com"
@@ -126,6 +144,7 @@ export default function HexagoneFooter() {
           </p>
         </div>
       </div>
+
     </footer>
   )
 }
