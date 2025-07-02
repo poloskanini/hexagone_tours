@@ -26,7 +26,7 @@ const people = [
   },
   {
     name: 'Hakim OUHADJ',
-    imageUrl: '/', // à compléter
+    imageUrl: '/imgs/team/greyBackgroundTeam/greyHakim.jpg',
     email: 'hakim@hexagone-tours.com',
     phone: '+33761024330',
   },

@@ -127,7 +127,7 @@ export default function Header() {
         {menuRef.current && (
           <>
             <motion.div
-              className="fixed top-0 right-0 w-full h-screen bg-orange-100 z-50"
+              className="fixed top-0 right-0 w-full h-screen bg-secondary z-50"
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
