@@ -6,6 +6,7 @@ import { Manrope, Playfair_Display, Raleway } from "next/font/google";
 import { usePathname } from "next/navigation";
 import Header from '../components/Header'
 import VideoBackground from '../components/VideoBackground'
+import { Analytics } from "@vercel/analytics/next"
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -43,6 +44,7 @@ export default function RootLayout({ children }) {
           </section>
         )}
         {children}
+        <Analytics />
       </body>
     </html>
   )
