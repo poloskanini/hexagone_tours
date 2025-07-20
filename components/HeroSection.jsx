@@ -19,7 +19,7 @@ export default function HeroSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.6 }}
             transition={{ duration: 1 }}
-            className="text-4xl lg:text-6xl font-playfair font-medium mb-4 text-primary"
+            className="text-4xl lg:text-6xl font-playfair font-medium mb-4 text-primary text-center lg:text-left"
           >
             {t.home.title}
           </motion.h1>

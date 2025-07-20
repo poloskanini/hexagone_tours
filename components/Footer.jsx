@@ -84,7 +84,7 @@ export default function HexagoneFooter() {
       </div>
 
       {/* Bloc logos + mentions */}
-      <div className="relative z-20 mt-12 mx-auto max-w-7xl flex flex-col md:grid md:grid-cols-3 text-sm text-neutral-400 items-center md:items-start gap-6">
+      <div className="relative z-20 mt-12 mx-auto max-w-7xl flex flex-col md:grid md:grid-cols-2 text-sm text-neutral-400 items-center md:items-start gap-6">
         {/* Gauche (desktop), dessous les logos en mobile */}
         <div className="order-2 md:order-1 text-center md:text-left space-y-1">
           <p>© Hexagone Tours {currentYear} – {t.footer.rights}</p>
@@ -100,7 +100,7 @@ export default function HexagoneFooter() {
         </div>
 
         {/* Centre : logos partenaires */}
-        <div className="order-1 md:order-2 flex items-center justify-center gap-6">
+        {/* <div className="order-1 md:order-2 flex items-center justify-center gap-6">
           <div className="relative w-20 h-10">
             <Image
               src="/imgs/logos/APST.png"
@@ -128,7 +128,7 @@ export default function HexagoneFooter() {
                 className="object-contain bg-white p-1"
               />
           </div>
-        </div>
+        </div> */}
 
         {/* Droite */}
         <div className="order-3 text-center md:text-right mt-4 md:mt-0">
@@ -137,7 +137,7 @@ export default function HexagoneFooter() {
               href="https://www.nicolasbarthes.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:opacity-80 underline transition-opacity duration-200 ease-in-out"
+              className="hover:opacity-80 hover:underline transition-opacity duration-200 ease-in-out"
             >
               {t.footer.credit}
             </Link>

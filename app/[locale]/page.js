@@ -15,7 +15,7 @@ export default function HomePage() {
 
   return (
     <main>
-      <HeroOverlayText />
+      {/* <HeroOverlayText /> */}
       <HeroSection />
       <VanishText />
       <FullscreenCarousel />

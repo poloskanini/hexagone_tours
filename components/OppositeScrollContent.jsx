@@ -27,7 +27,7 @@ const Content = ({ content, locale }) => {
         <div
           key={id}
           className={`relative p-8 h-screen flex items-center ${
-            idx % 2 ? "bg-white text-black" : "bg-secondary text-white"
+            idx % 2 ? "bg-white text-secondary" : "bg-secondary text-white"
           }`}
         >
           {idx === 0 && (
@@ -185,7 +185,7 @@ const getItems = (locale) => {
           A <em>tailored</em>, competitive, and <strong>top-quality</strong> experience.
         </>
       ),
-      img: "/imgs/vignes.jpg",
+      img: "/imgs/tourists-2.jpg",
     },
   ]
 }
