@@ -3,18 +3,19 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useAnimation, useInView } from "framer-motion";
 import { Volume2, VolumeX } from "lucide-react";
+import { usePathname } from "next/navigation"; // <--- Ajouté
 
 export default function VideoBackground() {
   const videoRef = useRef(null);
   const [muted, setMuted] = useState(true);
   const controls = useAnimation();
   const containerRef = useRef(null);
-  const isInView = useInView(containerRef, { amount: 0.2 }); // 20% visible
+  const isInView = useInView(containerRef, { amount: 0.2 });
+  const pathname = usePathname(); // <--- Ajouté
 
   // Fade audio
   const fadeVolume = async (targetVolume) => {
     if (!videoRef.current) return;
-    const start = videoRef.current.volume;
     await controls.start({
       volume: targetVolume,
       transition: { duration: 0.5, ease: "easeOut" },
@@ -50,6 +51,15 @@ export default function VideoBackground() {
       fadeVolume(1);
     }
   }, [isInView]);
+
+  // Redémarrer la vidéo quand on revient sur la home
+  useEffect(() => {
+    if (!videoRef.current) return;
+    if (pathname === "/" || pathname === "/fr" || pathname === "/en") {
+      videoRef.current.currentTime = 0; // Repart à zéro
+      videoRef.current.play(); // Relance la lecture
+    }
+  }, [pathname]);
 
   return (
     <div ref={containerRef} className="relative h-[90vh]">

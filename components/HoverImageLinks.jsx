@@ -1,7 +1,9 @@
+"use client";
+
 import { useMotionValue, motion, useSpring, useTransform } from "framer-motion";
 import React, { useRef } from "react";
-import { FiArrowRight, FiArrowLeft } from "react-icons/fi";
-import Link from "next/link";
+import { FiArrowLeft } from "react-icons/fi";
+import { usePathname, useRouter } from "next/navigation";
 
 export const HoverImageLinks = ({ locale, onClick, translations }) => {
   const links = [
@@ -40,13 +42,15 @@ export const HoverImageLinks = ({ locale, onClick, translations }) => {
   return (
     <section className="bg-transparent font-raleway">
       {links.map((link, index) => (
-        <HoverLink key={index} {...link} onClick={onClick} />
+        <HoverLink key={index} {...link} locale={locale} onClick={onClick} />
       ))}
     </section>
   );
 };
 
-const HoverLink = ({ heading, imgSrc, subheading, href, onClick }) => {
+const HoverLink = ({ heading, imgSrc, subheading, href, onClick, locale }) => {
+  const pathname = usePathname();
+  const router = useRouter();
   const ref = useRef(null);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -54,6 +58,8 @@ const HoverLink = ({ heading, imgSrc, subheading, href, onClick }) => {
   const mouseYSpring = useSpring(y);
   const top = useTransform(mouseYSpring, [0.5, -0.5], ["40%", "60%"]);
   const left = useTransform(mouseXSpring, [0.5, -0.5], ["60%", "70%"]);
+
+  const isHome = pathname === `/${locale}` || pathname === `/${locale}/` || pathname === "/";
 
   const handleMouseMove = (e) => {
     const rect = ref.current.getBoundingClientRect();
@@ -65,10 +71,14 @@ const HoverLink = ({ heading, imgSrc, subheading, href, onClick }) => {
 
   const handleClick = (e) => {
     e.preventDefault();
-    const id = href.replace("#", "");
-    const target = document.getElementById(id);
-    if (target) {
-      target.scrollIntoView({ behavior: "smooth" });
+    if (isHome) {
+      // Scroll direct si on est déjà sur home
+      const id = href.replace("#", "");
+      const target = document.getElementById(id);
+      if (target) target.scrollIntoView({ behavior: "smooth" });
+    } else {
+      // Redirection vers la home avec l’ancre
+      router.push(`/${locale}${href}`);
     }
     if (onClick) onClick();
   };

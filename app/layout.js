@@ -40,7 +40,7 @@ export default function RootLayout({ children }) {
         <Header />
         {showVideo && (
           <section id="home" className="scroll-mt-24">
-            <VideoBackground />
+            <VideoBackground key={pathname}/>
           </section>
         )}
         {children}

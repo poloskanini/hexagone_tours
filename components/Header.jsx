@@ -4,11 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useMemo, useRef, useState, useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import {
-  motion,
-  AnimatePresence,
-  useScroll,
-} from "framer-motion";
+import { motion, AnimatePresence, useScroll } from "framer-motion";
 import LogoMaskWithImage from "./LogoMask";
 import { HoverImageLinks } from "./HoverImageLinks";
 import getTranslations from "../lib/getTranslations";
@@ -33,6 +29,10 @@ export default function Header() {
   const [logoSrc, setLogoSrc] = useState("/Logo_Hexagone_Titre_White_Full.svg");
   const [logoWidthVW, setLogoWidthVW] = useState("45vw");
 
+  // --- Détecter si on est sur la home ---
+  const isHome =
+    pathname === "/" || pathname === "/fr" || pathname === "/en";
+
   useEffect(() => {
     setHydrated(true);
 
@@ -45,11 +45,18 @@ export default function Header() {
       const shouldFix = scrollTop > 300;
 
       setIsScrolled(shouldFix);
-      setLogoSrc(
-        shouldFix
-          ? "/Logo_Hexagone_Titre.svg"
-          : "/Logo_Hexagone_Titre_White_Full.svg"
-      );
+
+      if (isHome) {
+        // Home : logo qui change selon le scroll
+        setLogoSrc(
+          shouldFix
+            ? "/Logo_Hexagone_Titre.svg"
+            : "/Logo_Hexagone_Titre_White_Full.svg"
+        );
+      } else {
+        // Pages hors-home : logo noir direct
+        setLogoSrc("/Logo_Hexagone_Titre.svg");
+      }
 
       if (!hydrated || !isDesktop) {
         setLogoWidthVW("70vw");
@@ -59,7 +66,7 @@ export default function Header() {
       if (shouldFix) {
         setLogoWidthVW("20vw");
       } else {
-        const interpolated = 45 - ((25 * scrollTop) / 300);
+        const interpolated = 45 - (25 * scrollTop) / 300;
         setLogoWidthVW(`${interpolated}vw`);
       }
     };
@@ -71,7 +78,7 @@ export default function Header() {
       window.removeEventListener("resize", updateIsDesktop);
       window.removeEventListener("scroll", updateFromScroll);
     };
-  }, [hydrated, isDesktop]);
+  }, [hydrated, isDesktop, isHome]);
 
   useEffect(() => {
     if (menuButtonRef.current) {
@@ -89,7 +96,11 @@ export default function Header() {
     <>
       <motion.header
         className={`w-full fixed top-0 left-0 z-50 px-6 py-2 flex justify-between items-center transition-colors duration-500 ${
-          isScrolled ? "bg-white border-b border-[#f0eee2]" : "bg-transparent"
+          isHome
+            ? isScrolled
+              ? "bg-white border-b border-[#f0eee2]"
+              : "bg-transparent"
+            : "bg-white border-b border-[#f0eee2]"
         }`}
       >
         <Link href={`/${locale}`}>
@@ -115,7 +126,7 @@ export default function Header() {
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
             className={`tracking-wide cursor-pointer text-lg lg:text-xl font-thin transition-colors duration-300 xl:m-6 relative p-2 -m-2 ${
-              isScrolled ? "text-black" : "text-white"
+              isHome && !isScrolled ? "text-white" : "text-black"
             }`}
           >
             <RevealText isHovered={isHovered}>menu</RevealText>
@@ -123,6 +134,7 @@ export default function Header() {
         </div>
       </motion.header>
 
+      {/* Menu overlay */}
       <AnimatePresence>
         {menuRef.current && (
           <>
@@ -184,39 +196,35 @@ export default function Header() {
         )}
       </AnimatePresence>
 
+      {/* Bouton de changement de langue */}
       <div className="fixed bottom-5 left-6 z-50">
-  <div
-    onClick={() => changeLocale(locale === "fr" ? "en" : "fr")}
-    className="relative w-20 h-10 bg-black/60 backdrop-blur-md rounded-full cursor-pointer shadow-md"
-  >
-    {/* Emoji FR */}
-    <span
-      className={`absolute left-2.5 text-lg top-1/2 -translate-y-1/2 z-10 transition-opacity duration-300 ${
-        locale === "fr" ? "opacity-100" : "opacity-40"
-      }`}
-    >
-      🇫🇷
-    </span>
+        <div
+          onClick={() => changeLocale(locale === "fr" ? "en" : "fr")}
+          className="relative w-20 h-10 bg-black/60 backdrop-blur-md rounded-full cursor-pointer shadow-md"
+        >
+          <span
+            className={`absolute left-2.5 text-lg top-1/2 -translate-y-1/2 z-10 transition-opacity duration-300 ${
+              locale === "fr" ? "opacity-100" : "opacity-40"
+            }`}
+          >
+            🇫🇷
+          </span>
 
-    {/* Emoji EN */}
-    <span
-      className={`absolute right-2.5 text-lg top-1/2 -translate-y-1/2 z-10 transition-opacity duration-300 ${
-        locale === "en" ? "opacity-100" : "opacity-40"
-      }`}
-    >
-      🇬🇧
-    </span>
+          <span
+            className={`absolute right-2.5 text-lg top-1/2 -translate-y-1/2 z-10 transition-opacity duration-300 ${
+              locale === "en" ? "opacity-100" : "opacity-40"
+            }`}
+          >
+            🇬🇧
+          </span>
 
-    {/* Curseur rond */}
-    <div
-      className={`absolute top-1 left-1 w-8 h-8 bg-white rounded-full transition-transform duration-300 z-0 ${
-        locale === "fr" ? "translate-x-0" : "translate-x-10"
-      }`}
-    />
-  </div>
-</div>
-
-
+          <div
+            className={`absolute top-1 left-1 w-8 h-8 bg-white rounded-full transition-transform duration-300 z-0 ${
+              locale === "fr" ? "translate-x-0" : "translate-x-10"
+            }`}
+          />
+        </div>
+      </div>
     </>
   );
 }
