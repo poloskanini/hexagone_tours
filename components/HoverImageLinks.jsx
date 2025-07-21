@@ -99,7 +99,7 @@ const HoverLink = ({ heading, imgSrc, subheading, href, onClick, locale }) => {
             whileHover: { x: 16 },
           }}
           transition={{ type: "spring", staggerChildren: 0.075, delayChildren: 0.25 }}
-          className="relative z-10 block text-3xl whitespace-nowrap font-bold text-black/80 transition-colors duration-500 group-hover:font-black md:text-5xl uppercase"
+          className="relative z-10 block text-3xl whitespace-nowrap font-bold text-stone-800 transition-colors duration-500 group-hover:font-black md:text-5xl uppercase"
         >
           {heading.split(" ").map((word, wi) => (
             <React.Fragment key={wi}>
@@ -126,7 +126,7 @@ const HoverLink = ({ heading, imgSrc, subheading, href, onClick, locale }) => {
           ))}
         </motion.h2>
 
-        <p className="relative z-10 mt-2 block text-lg text-black transition-colors duration-500">
+        <p className="relative z-10 mt-2 block text-lg text-stone-800 font-light transition-colors duration-500">
           {subheading}
         </p>
       </div>
