@@ -182,7 +182,7 @@ export default function FullscreenCarousel() {
       <div className="absolute inset-0 z-0 transition-all duration-700">
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${current.image})`, filter: "brightness(50%)" }}
+          style={{ backgroundImage: `url(${current.image})`, filter: "brightness(30%)" }}
         />
       </div>
 

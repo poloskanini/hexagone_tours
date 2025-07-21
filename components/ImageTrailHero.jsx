@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 export const ImageTrailHero = () => {
   return (
       <>
-        <section className="h-[30vh] md:h-[45vh] bg-slate-200">
+        <section className="h-[22vh] md:h-[25vh] xl:h-[30vh] 2xl:h-[45vh] bg-slate-200">
           <WatermarkWrapper />
         </section>
 
