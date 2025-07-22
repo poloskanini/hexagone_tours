@@ -70,6 +70,7 @@ const MagnetButton = ({ label }) => {
     <motion.a
       href="mailto:infos@hexagone-tours.com?subject=Demande%20de%20contact%20depuis%20hexagone-tours.com"
       ref={ref}
+      aria-label="Envoyer un e-mail à Hexagone Tours"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={{ transform }}

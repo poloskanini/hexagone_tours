@@ -85,6 +85,7 @@ export default function VideoBackground() {
       {/* Bouton volume */}
       <motion.button
         onClick={toggleMute}
+        aria-label={muted ? "Activer le son" : "Couper le son"} // <- ACCESSIBILITÉ
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         whileHover={{ scale: 1.1 }}
