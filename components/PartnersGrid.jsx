@@ -11,7 +11,7 @@ const partners = [
   { imgUrl: '/imgs/logos/amgen.png', name: 'Amgen' },
   { imgUrl: '/imgs/logos/broshing.png', name: 'Broshing Events' },
   { imgUrl: '/imgs/logos/bayer.png', name: 'Bayer' },
-  { imgUrl: '/imgs/logos/takeda.png', name: 'Takeda' },
+  { imgUrl: '/imgs/logos/derichebourg.png', name: 'Derichebourg' },
   { imgUrl: '/imgs/logos/roche.png', name: 'Roche' },
   { imgUrl: '/imgs/logos/airp.png', name: 'Abdi Brahim Remède Pharma' },
   { imgUrl: '/imgs/logos/biopharm.png', name: 'Biopharm' },
