@@ -112,7 +112,6 @@ export default function Header() {
               height={100}
               className="h-auto w-full p-2 -m-2"
               priority
-              fetchPriority="high"
             />
           </motion.div>
         </Link>
