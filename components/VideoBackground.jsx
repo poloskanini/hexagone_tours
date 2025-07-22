@@ -75,6 +75,7 @@ export default function VideoBackground() {
           muted
           loop
           playsInline
+          poster="/imgs/poster_11zon.jpg"
           className="w-full h-full object-cover"
         >
           <source src="/videos/HEXAGONE3.mp4" type="video/mp4" />
