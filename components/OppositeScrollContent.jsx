@@ -111,7 +111,7 @@ const getItems = (locale) => {
         ? "“Une vision humaine, créative et exigeante”"
         : "“A human, creative and exacting vision”",
       description: null,
-      img: "/imgs/getty-images-lPOjkff2nsc-unsplash_11zon.jpg",
+      img: "/imgs/getty-images-lPOjkff2nsc-unsplash_11zon.webp",
     },
     {
       id: 2,
@@ -135,7 +135,7 @@ const getItems = (locale) => {
           our team provides <strong>tailor-made solutions</strong> regardless of the format or complexity.
         </>
       ),
-      img: "/imgs/eiffel3.jpg",
+      img: "/imgs/eiffel3.webp",
     },
     {
       id: 3,
@@ -161,7 +161,7 @@ const getItems = (locale) => {
           Every detail is crafted to deliver a <strong className="font-semibold">seamless, engaging, and personalized experience.</strong>
         </>
       ),
-      img: "/imgs/seminaire3.jpg",
+      img: "/imgs/seminaire3.webp",
     },
     {
       id: 4,
@@ -185,7 +185,7 @@ const getItems = (locale) => {
           A <em>tailored</em>, competitive, and <strong>top-quality</strong> experience.
         </>
       ),
-      img: "/imgs/tourists-2.jpg",
+      img: "/imgs/tourists-2.webp",
     },
   ]
 }

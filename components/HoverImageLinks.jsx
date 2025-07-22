@@ -10,31 +10,31 @@ export const HoverImageLinks = ({ locale, onClick, translations }) => {
     {
       heading: translations.home || "Accueil",
       subheading: translations.sub_home || "Retour à l’accueil",
-      imgSrc: "/imgs/pexels-pok-rie-33563-135477.jpg",
+      imgSrc: "/imgs/pexels-pok-rie-33563-135477.webp",
       href: "#home",
     },
     {
       heading: translations.expertise || "Savoir Faire",
       subheading: translations.sub_expertise || "Découvrir notre vision",
-      imgSrc: "/imgs/carousel/diner2_11zon.jpg",
+      imgSrc: "/imgs/carousel/diner2_11zon.webp",
       href: "#expertise",
     },
     {
       heading: translations.approch || "Une approche 360°",
       subheading: translations.sub_approch || "Découvrir notre vision",
-      imgSrc: "/imgs/360.jpg",
+      imgSrc: "/imgs/360.webp",
       href: "#approche",
     },
     {
       heading: translations.whoarewe || "Qui sommes-nous ?",
       subheading: translations.sub_whoarewe || "Une équipe dévouée",
-      imgSrc: "/imgs/team.jpg",
+      imgSrc: "/imgs/team.webp",
       href: "#qui-sommes-nous",
     },
     {
       heading: translations.contact || "Contact",
       subheading: translations.sub_contact || "Prenons contact",
-      imgSrc: "/imgs/pexels-pixabay-41004.jpg",
+      imgSrc: "/imgs/pexels-pixabay-41004.webp",
       href: "#contact",
     },
   ];

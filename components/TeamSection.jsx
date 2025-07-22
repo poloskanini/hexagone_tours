@@ -8,25 +8,25 @@ import getTranslations from '../lib/getTranslations'
 const people = [
   {
     name: 'Timothée MARCHAIS',
-    imageUrl: '/imgs/team/greyBackgroundTeam/greyTimo.jpg',
+    imageUrl: '/imgs/team/greyBackgroundTeam/greyTimo.webp',
     email: 'timothee@hexagone-tours.com',
     phone: '+33695869084',
   },
   {
     name: 'Raouf MAHBOUB',
-    imageUrl: '/imgs/team/greyBackgroundTeam/greyRaouf.jpg',
+    imageUrl: '/imgs/team/greyBackgroundTeam/greyRaouf.webp',
     email: 'raouf@hexagone-tours.com',
     phone: '+33612190349',
   },
   {
     name: 'Lamine MOKRANE',
-    imageUrl: '/imgs/team/greyBackgroundTeam/greyLamine.jpg',
+    imageUrl: '/imgs/team/greyBackgroundTeam/greyLamine.webp',
     email: 'lamine@hexagone-tours.com',
     phone: '+33650038632',
   },
   {
     name: 'Hakim OUHADJ',
-    imageUrl: '/imgs/team/greyBackgroundTeam/greyHakim.jpg',
+    imageUrl: '/imgs/team/greyBackgroundTeam/greyHakim.webp',
     email: 'hakim@hexagone-tours.com',
     phone: '+33761024330',
   },

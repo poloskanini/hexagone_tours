@@ -29,7 +29,7 @@ export default function HexagoneFooter() {
       {/* ✅ Image en fond bas */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/imgs/airportBoard.jpg"
+          src="/imgs/airportBoard.webp"
           alt="Fond footer"
           fill
           className="object-cover object-bottom opacity-40"

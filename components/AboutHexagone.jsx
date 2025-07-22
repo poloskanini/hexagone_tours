@@ -13,7 +13,7 @@ export default function AboutHexagone() {
         {/* Image à gauche */}
         <div className="w-full lg:w-1/2 relative aspect-[4/3]">
           <Image
-            src="/imgs/HexagoneFacade.png"
+            src="/imgs/HexagoneFacade.webp"
             alt="Hexagone Tours team"
             fill
             className="object-cover rounded-xl shadow-md"
