@@ -3,6 +3,7 @@
 import { motion, useScroll, useTransform } from "framer-motion"
 import { useRef } from "react"
 import { usePathname } from "next/navigation"
+import Image from "next/image"
 
 const OppoScroll = () => {
   const targetRef = useRef(null)
@@ -85,13 +86,17 @@ const Images = ({ content, scrollYProgress }) => {
   return (
     <div className="w-1/2 h-screen overflow-hidden sticky top-0">
       <motion.div style={{ top }} className="absolute left-0 right-0 top-0">
-        {[...content].reverse().map(({ img, id, title }) => (
-          <img
-            key={id}
-            alt={title}
-            src={img}
-            className="h-screen w-full object-cover object-center"
-          />
+        {[...content].reverse().map(({ img, id, title }, idx) => (
+          <div key={id} className="relative h-screen w-full">
+            <Image
+              alt={title}
+              src={img}
+              fill
+              className="object-cover object-center"
+              sizes="(max-width: 768px) 100vw, 50vw"
+              priority={idx === 0}
+            />
+          </div>
         ))}
       </motion.div>
     </div>
