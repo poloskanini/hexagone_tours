@@ -1,4 +1,9 @@
+# *
 User-agent: *
 Allow: /
 
-Sitemap: https://hexagone-tours.vercel.app/sitemap.xml
+# Host
+Host: https://hexagone-tours.com
+
+# Sitemaps
+Sitemap: https://hexagone-tours.com/sitemap.xml
