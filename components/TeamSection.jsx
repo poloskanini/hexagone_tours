@@ -95,7 +95,7 @@ export default function TeamSection() {
         className="hidden lg:flex flex-col items-center font-playfair absolute top-42 right-4 xl:right-12"
       >
         <span className="text-md lg:text-2xl [writing-mode:vertical-rl] [text-orientation:upright] text-secondary">
-          {locale === 'en' ? 'Our Team' : 'QUI SOMMES-NOUS ?'}
+          {locale === 'en' ? 'WHO ARE WE ?' : 'QUI SOMMES-NOUS ?'}
         </span>
         <div className="w-px h-32 bg-secondary mt-4" />
       </motion.div>
