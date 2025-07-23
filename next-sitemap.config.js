@@ -5,6 +5,7 @@ module.exports = {
   changefreq: 'weekly',
   priority: 0.7,
   sitemapSize: 5000,
+  generateIndexSitemap: false, // Désactive la création de sitemap.xml
 
   // URLs alternatives pour hreflang
   alternateRefs: [
