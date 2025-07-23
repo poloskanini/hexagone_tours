@@ -10,7 +10,7 @@ export async function generateMetadata({ params }) {
   const title =
     locale === 'en'
       ? 'Hexagone Tours - Travel Agency'
-      : 'Hexagone Tours - Agence de Voyage';
+      : 'Hexagone Tours - Agence de Voyages';
 
   const description = descriptions[locale] || descriptions.fr;
   const url = 'https://hexagone-tours.com';
