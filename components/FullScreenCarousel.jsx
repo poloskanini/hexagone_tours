@@ -195,6 +195,7 @@ export default function FullscreenCarousel() {
                 key={slide.title}
                 src={slide.image}
                 alt={slide.subtitle}
+                loading="lazy"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5 }}
