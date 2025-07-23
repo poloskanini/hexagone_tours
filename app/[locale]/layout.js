@@ -41,6 +41,12 @@ export async function generateMetadata({ params }) {
       description,
       images: [image],
     },
+    icons: {
+      icon: '/favicon.ico',
+      apple: '/favicon.ico',
+      shortcut: '/favicon.ico',
+    },
+    manifest: '/site.webmanifest',
   };
 }
 
