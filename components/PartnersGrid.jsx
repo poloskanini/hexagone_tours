@@ -31,7 +31,7 @@ export default function PartnersGrid() {
   return (
     <section className="bg-white py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <h2 className="mb-12 text-center text-2xl font-medium text-gray-800 md:text-4xl font-playfair">
+        <h2 className="mb-12 text-center text-2xl font-medium text-secondary md:text-4xl font-playfair">
           {title}
         </h2>
 
