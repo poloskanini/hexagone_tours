@@ -1,7 +1,13 @@
 import '../globals.css';
+import { notFound } from 'next/navigation';
 
 export async function generateMetadata({ params }) {
-  const { locale } = await params;
+  const { locale } = await params; // OK ici
+
+  if (!['fr', 'en'].includes(locale)) {
+    notFound();
+  }
+
   const descriptions = {
     fr: "Hexagone Tours est une agence événementielle basée à Paris, spécialisée dans les séminaires, incentives et voyages d'affaires sur mesure.",
     en: "Hexagone Tours is an event agency based in Paris, specialized in seminars, incentives, and tailor-made business trips.",
@@ -50,6 +56,12 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default function LocaleLayout({ children }) {
+export default async function LocaleLayout({ children, params }) {
+  const { locale } = await params; // ✅ correction ici
+
+  if (!['fr', 'en'].includes(locale)) {
+    notFound();
+  }
+
   return <main>{children}</main>;
 }

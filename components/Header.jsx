@@ -103,7 +103,7 @@ export default function Header() {
             : "bg-white border-b border-[#f0eee2]"
         }`}
       >
-        <Link href={`/${locale}`}>
+        <Link href={locale === "fr" ? "/" : `/${locale}`}>
           <motion.div style={{ width: logoWidthVW }}>
             <Image
               src={logoSrc}
