@@ -63,11 +63,46 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function LocaleLayout({ children, params }) {
-  const { locale } = await params; // ✅ correction ici
+  const { locale } = await params;
 
   if (!['fr', 'en'].includes(locale)) {
     notFound();
   }
 
-  return <main>{children}</main>;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            "name": "Hexagone Tours",
+            "url": "https://hexagone-tours.com",
+            "logo": "https://hexagone-tours.com/favicon-512.png",
+            "image": "https://hexagone-tours.com/imgs/poster_11zon.webp",
+            "description":
+              "Hexagone Tours est une agence événementielle basée à Paris, spécialisée dans les séminaires, incentives et voyages d'affaires sur mesure.",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "86, boulevard de l'Hôpital",
+              "addressLocality": "Paris",
+              "postalCode": "75013",
+              "addressCountry": "FR"
+            },
+            "contactPoint": [
+              {
+                "@type": "ContactPoint",
+                "telephone": "+33-1-42-50-42-50",
+                "contactType": "customer service",
+                "areaServed": ["FR", "EN"],
+                "availableLanguage": ["French", "English"]
+              }
+            ],
+          }),
+        }}
+      />
+      <main>{children}</main>
+    </>
+  );
 }
