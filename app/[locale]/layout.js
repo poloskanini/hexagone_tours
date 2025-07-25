@@ -2,7 +2,7 @@ import '../globals.css';
 import { notFound } from 'next/navigation';
 
 export async function generateMetadata({ params }) {
-  const { locale } = await params; // OK ici
+  const { locale } = await params;
 
   if (!['fr', 'en'].includes(locale)) {
     notFound();
@@ -48,9 +48,15 @@ export async function generateMetadata({ params }) {
       images: [image],
     },
     icons: {
-      icon: '/favicon.ico',
-      apple: '/favicon.ico',
-      shortcut: '/favicon.ico',
+      icon: [
+        { url: '/favicon-16.png', sizes: '16x16', type: 'image/png' },
+        { url: '/favicon-32.png', sizes: '32x32', type: 'image/png' },
+        { url: '/favicon-48.png', sizes: '48x48', type: 'image/png' },
+        { url: '/favicon-192.png', sizes: '192x192', type: 'image/png' },
+        { url: '/favicon-512.png', sizes: '512x512', type: 'image/png' },
+      ],
+      apple: '/favicon-192.png',
+      shortcut: '/favicon-32.png',
     },
     manifest: '/site.webmanifest',
   };
