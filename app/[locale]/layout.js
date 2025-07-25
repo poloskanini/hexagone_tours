@@ -83,6 +83,7 @@ export default async function LocaleLayout({ children, params }) {
             "image": "https://hexagone-tours.com/imgs/poster_11zon.webp",
             "description":
               "Hexagone Tours est une agence événementielle basée à Paris, spécialisée dans les séminaires, incentives et voyages d'affaires sur mesure.",
+            "telephone": "+33-1-42-50-42-50",
             "address": {
               "@type": "PostalAddress",
               "streetAddress": "86, boulevard de l'Hôpital",
