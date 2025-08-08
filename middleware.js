@@ -2,11 +2,13 @@
 import { NextResponse } from 'next/server'
 
 export function middleware(request) {
-  const acceptLang = request.headers.get('accept-language') || 'fr'
-  const lang = acceptLang.startsWith('fr') ? 'fr' : 'en'
+  const userAgent = request.headers.get('user-agent') || ''
+  const isGoogleBot = userAgent.toLowerCase().includes('googlebot')
 
   const { pathname } = request.nextUrl
-  if (pathname === '/') {
+  if (pathname === '/' && !isGoogleBot) {
+    const acceptLang = request.headers.get('accept-language') || 'fr'
+    const lang = acceptLang.startsWith('fr') ? 'fr' : 'en'
     return NextResponse.redirect(new URL(`/${lang}`, request.url))
   }
 
