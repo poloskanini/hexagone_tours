@@ -36,8 +36,8 @@ module.exports = {
     await config.transform(config, '/en'),
     await config.transform(config, '/fr/mentions-legales'),
     await config.transform(config, '/fr/politique-de-confidentialite'),
-    await config.transform(config, '/en/legal-notice'),
-    await config.transform(config, '/en/privacy-policy'),
+    await config.transform(config, '/en/mentions-legales'),
+    await config.transform(config, '/en/politique-de-confidentialite'),
   ],
 
   // Pages à ignorer
