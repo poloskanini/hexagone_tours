@@ -19,15 +19,20 @@ export async function generateMetadata({ params }) {
       : 'Hexagone Tours - Agence de Voyages';
 
   const description = descriptions[locale] || descriptions.fr;
-  const url = 'https://hexagone-tours.com';
+  const url = 'https://www.hexagone-tours.com';
+  const canonical = `${url}/${locale}`;
   const image = `${url}/imgs/poster_11zon.webp`;
 
   return {
     title,
     description,
+    alternates: {
+      canonical,
+    },
     openGraph: {
       title,
       description,
+      url: canonical,
       url,
       siteName: 'Hexagone Tours',
       images: [

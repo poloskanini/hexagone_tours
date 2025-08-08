@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://hexagone-tours.com
+Host: https://www.hexagone-tours.com
 
 # Sitemaps
-Sitemap: https://hexagone-tours.com/sitemap.xml
+Sitemap: https://www.hexagone-tours.com/sitemap.xml

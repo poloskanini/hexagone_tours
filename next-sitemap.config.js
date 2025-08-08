@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: 'https://hexagone-tours.com', // Domaine principal
+  siteUrl: 'https://www.hexagone-tours.com', // Domaine principal
   generateRobotsTxt: true,
   changefreq: 'weekly',
   priority: 0.7,
@@ -10,11 +10,11 @@ module.exports = {
   // URLs alternatives pour hreflang
   alternateRefs: [
     {
-      href: 'https://hexagone-tours.com/fr',
+      href: 'https://www.hexagone-tours.com/fr',
       hreflang: 'fr',
     },
     {
-      href: 'https://hexagone-tours.com/en',
+      href: 'https://www.hexagone-tours.com/en',
       hreflang: 'en',
     },
   ],
