@@ -2,8 +2,8 @@
 import '../globals.css';
 import { notFound } from 'next/navigation';
 
-export function generateMetadata({ params }) {
-  const { locale } = params;
+export async function generateMetadata({ params }) {
+  const { locale } = await params; // ✅ params est async
 
   if (!['fr', 'en'].includes(locale)) {
     notFound();
@@ -14,10 +14,9 @@ export function generateMetadata({ params }) {
     en: "Hexagone Tours is an event agency based in Paris, specialized in seminars, incentives, and tailor-made business trips.",
   };
 
-  const title =
-    locale === 'en'
-      ? 'Hexagone Tours - Travel Agency'
-      : 'Hexagone Tours - Agence de Voyages';
+  const title = locale === 'en'
+    ? 'Hexagone Tours - Travel Agency'
+    : 'Hexagone Tours - Agence de Voyages';
 
   const description = descriptions[locale] || descriptions.fr;
 
@@ -33,22 +32,15 @@ export function generateMetadata({ params }) {
       languages: {
         fr: `${base}/fr`,
         en: `${base}/en`,
-        'x-default': `${base}/fr`, // optionnel : vers ta locale par défaut
+        'x-default': `${base}/fr`,
       },
     },
     openGraph: {
       title,
       description,
-      url: canonical, // <= une seule clé, localisée
+      url: canonical,
       siteName: 'Hexagone Tours',
-      images: [
-        {
-          url: image,
-          width: 1200,
-          height: 630,
-          alt: 'Hexagone Tours',
-        },
-      ],
+      images: [{ url: image, width: 1200, height: 630, alt: 'Hexagone Tours' }],
       locale,
       type: 'website',
     },
@@ -73,8 +65,8 @@ export function generateMetadata({ params }) {
   };
 }
 
-export default function LocaleLayout({ children, params }) {
-  const { locale } = params;
+export default async function LocaleLayout({ children, params }) {
+  const { locale } = await params; // ✅ params est async
 
   if (!['fr', 'en'].includes(locale)) {
     notFound();
@@ -84,7 +76,6 @@ export default function LocaleLayout({ children, params }) {
     <>
       <script
         type="application/ld+json"
-        // ⚠️ tout en "www"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
@@ -103,15 +94,13 @@ export default function LocaleLayout({ children, params }) {
               "postalCode": "75013",
               "addressCountry": "FR"
             },
-            "contactPoint": [
-              {
-                "@type": "ContactPoint",
-                "telephone": "+33-1-42-50-42-50",
-                "contactType": "customer service",
-                "areaServed": ["FR", "EN"],
-                "availableLanguage": ["French", "English"]
-              }
-            ]
+            "contactPoint": [{
+              "@type": "ContactPoint",
+              "telephone": "+33-1-42-50-42-50",
+              "contactType": "customer service",
+              "areaServed": ["FR", "EN"],
+              "availableLanguage": ["French", "English"]
+            }]
           }),
         }}
       />
