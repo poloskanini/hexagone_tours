@@ -1,8 +1,9 @@
+// app/[locale]/layout.js
 import '../globals.css';
 import { notFound } from 'next/navigation';
 
-export async function generateMetadata({ params }) {
-  const { locale } = await params;
+export function generateMetadata({ params }) {
+  const { locale } = params;
 
   if (!['fr', 'en'].includes(locale)) {
     notFound();
@@ -19,21 +20,26 @@ export async function generateMetadata({ params }) {
       : 'Hexagone Tours - Agence de Voyages';
 
   const description = descriptions[locale] || descriptions.fr;
-  const url = 'https://www.hexagone-tours.com';
-  const canonical = `${url}/${locale}`;
-  const image = `${url}/imgs/poster_11zon.webp`;
+
+  const base = 'https://www.hexagone-tours.com';
+  const canonical = `${base}/${locale}`;
+  const image = `${base}/imgs/poster_11zon.webp`;
 
   return {
     title,
     description,
     alternates: {
       canonical,
+      languages: {
+        fr: `${base}/fr`,
+        en: `${base}/en`,
+        'x-default': `${base}/fr`, // optionnel : vers ta locale par défaut
+      },
     },
     openGraph: {
       title,
       description,
-      url: canonical,
-      url,
+      url: canonical, // <= une seule clé, localisée
       siteName: 'Hexagone Tours',
       images: [
         {
@@ -67,8 +73,8 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default async function LocaleLayout({ children, params }) {
-  const { locale } = await params;
+export default function LocaleLayout({ children, params }) {
+  const { locale } = params;
 
   if (!['fr', 'en'].includes(locale)) {
     notFound();
@@ -78,14 +84,15 @@ export default async function LocaleLayout({ children, params }) {
     <>
       <script
         type="application/ld+json"
+        // ⚠️ tout en "www"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "LocalBusiness",
             "name": "Hexagone Tours",
-            "url": "https://hexagone-tours.com",
-            "logo": "https://hexagone-tours.com/favicon-512.png",
-            "image": "https://hexagone-tours.com/imgs/poster_11zon.webp",
+            "url": "https://www.hexagone-tours.com",
+            "logo": "https://www.hexagone-tours.com/favicon-512.png",
+            "image": "https://www.hexagone-tours.com/imgs/poster_11zon.webp",
             "description":
               "Hexagone Tours est une agence événementielle basée à Paris, spécialisée dans les séminaires, incentives et voyages d'affaires sur mesure.",
             "telephone": "+33-1-42-50-42-50",
@@ -104,7 +111,7 @@ export default async function LocaleLayout({ children, params }) {
                 "areaServed": ["FR", "EN"],
                 "availableLanguage": ["French", "English"]
               }
-            ],
+            ]
           }),
         }}
       />
