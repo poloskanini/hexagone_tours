@@ -1,7 +1,7 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
   siteUrl: 'https://www.hexagone-tours.com',
-  generateRobotsTxt: true,
+  generateRobotsTxt: false,
   changefreq: 'weekly',
   priority: 0.7,
   sitemapSize: 5000,
